@@ -1,6 +1,6 @@
-# Banking Schema RAG Evaluation System
+# Finding the best open source embedding models to use in Denodo AI SDK for Enterprise RAG implementation
 
-A comprehensive system for evaluating and utilizing Retrieval-Augmented Generation (RAG) for SQL query generation against a banking database schema.
+A comprehensive system for evaluating and utilizing Retrieval-Augmented Generation (RAG) for SQL query generation against a sample bank database schema.
 
 ## Overview
 
