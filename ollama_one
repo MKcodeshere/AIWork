@@ -1,0 +1,468 @@
+import requests
+import json
+import os
+from tqdm import tqdm
+import time
+
+# Langchain imports
+from langchain_community.vectorstores import Chroma
+from langchain_community.embeddings import OllamaEmbeddings
+from langchain.schema import Document
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+# Configuration
+API_BASE_URL = "http://localhost:8008"  # Update with your actual Denodo AI SDK API URL
+METADATA_ENDPOINT = "/getMetadata"
+# Authentication credentials
+USERNAME = "admin"  # Replace with your Denodo username
+PASSWORD = "admin"  # Replace with your Denodo password
+CHROMA_DB_PATH = "./chroma_db"  # Local path to store the Chroma DB
+OLLAMA_BASE_URL = "http://localhost:11434"  # Update with your Ollama API URL
+
+# Embedding model configurations
+EMBEDDING_MODELS = [
+    "nomic-embed-text",
+    "mxbai-embed-large",
+    "bge-m3"
+]
+
+def get_denodo_metadata(vdp_database_names, examples_per_table=3, view_descriptions=True, 
+                       column_descriptions=True, associations=True, insert=False, overwrite=False):
+    """
+    Retrieve metadata from the Denodo API endpoint.
+    
+    Args:
+        vdp_database_names (str): Comma-separated list of databases
+        examples_per_table (int): Number of example rows per table
+        view_descriptions (bool): Include view descriptions
+        column_descriptions (bool): Include column descriptions
+        associations (bool): Include table associations
+        insert (bool): Insert metadata into vector store
+        overwrite (bool): Overwrite existing metadata
+        
+    Returns:
+        dict: The metadata response as a JSON object
+    """
+    url = f"{API_BASE_URL}{METADATA_ENDPOINT}"
+    
+    params = {
+        "vdp_database_names": vdp_database_names,
+        "examples_per_table": examples_per_table,
+        "view_descriptions": str(view_descriptions).lower(),
+        "column_descriptions": str(column_descriptions).lower(),
+        "associations": str(associations).lower(),
+        "insert": str(insert).lower(),
+        "overwrite": str(overwrite).lower()
+    }
+    
+    # Create basic authentication header
+    import base64
+    auth_str = f"{USERNAME}:{PASSWORD}"
+    auth_bytes = auth_str.encode('ascii')
+    auth_b64 = base64.b64encode(auth_bytes).decode('ascii')
+    headers = {
+        "Authorization": f"Basic {auth_b64}"
+    }
+    
+    try:
+        print(f"Calling API: {url} with params: {params}")
+        response = requests.get(url, params=params, headers=headers)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error retrieving metadata: {e}")
+        return None
+
+def prepare_documents_from_metadata(metadata):
+    """
+    Prepare Langchain Document objects from the Denodo metadata.
+    
+    Args:
+        metadata (dict): The metadata from Denodo
+        
+    Returns:
+        list: List of Langchain Document objects
+    """
+    langchain_docs = []
+    
+    # Process the db_schema_json structure
+    for db_schema in metadata.get("db_schema_json", []):
+        database_name = db_schema.get("databaseName", "")
+        
+        # Process each table in the database
+        for table in db_schema.get("databaseTables", []):
+            table_name = table.get("tableName", "")
+            table_desc = table.get("description", "")
+            
+            # Create a document for the table
+            table_text = create_table_document(database_name, table_name, table_desc, table)
+            table_doc = Document(
+                page_content=table_text,
+                metadata={
+                    "id": f"{database_name}_{table_name.replace('.', '_')}",
+                    "type": "table",
+                    "database": database_name,
+                    "table": table_name
+                }
+            )
+            langchain_docs.append(table_doc)
+            
+            # Create documents for each column
+            for column in table.get("schema", []):
+                column_name = column.get("columnName", "")
+                column_text = create_column_document(database_name, table_name, column, table)
+                column_doc = Document(
+                    page_content=column_text,
+                    metadata={
+                        "id": f"{database_name}_{table_name.replace('.', '_')}_{column_name}",
+                        "type": "column",
+                        "database": database_name,
+                        "table": table_name,
+                        "column": column_name
+                    }
+                )
+                langchain_docs.append(column_doc)
+    
+    # Also create documents from the db_schema_text which has a nicer formatted version
+    for schema_text in metadata.get("db_schema_text", []):
+        # Parse the schema text to extract table information
+        if schema_text.startswith("=====Table "):
+            table_info = parse_schema_text(schema_text)
+            if table_info:
+                text_doc = Document(
+                    page_content=schema_text,
+                    metadata={
+                        "id": f"text_{table_info['table_name'].replace('.', '_')}",
+                        "type": "schema_text",
+                        "table": table_info['table_name']
+                    }
+                )
+                langchain_docs.append(text_doc)
+    
+    return langchain_docs
+
+def parse_schema_text(schema_text):
+    """
+    Parse schema text to extract table name and other info.
+    
+    Args:
+        schema_text (str): Raw schema text for a table
+        
+    Returns:
+        dict: Extracted table information or None if parsing failed
+    """
+    try:
+        # Extract table name from format "=====Table table_name====="
+        first_line = schema_text.split("\n")[0]
+        table_name = first_line.replace("=====Table ", "").replace("=====", "").strip()
+        
+        return {
+            "table_name": table_name
+        }
+    except:
+        return None
+
+def create_table_document(database_name, table_name, table_desc, table_data):
+    """
+    Create a text document describing a table for embedding.
+    
+    Args:
+        database_name (str): The database name
+        table_name (str): The table name
+        table_desc (str): Table description
+        table_data (dict): Table metadata
+        
+    Returns:
+        str: A document describing the table
+    """
+    document = f"Database: {database_name}\nTable: {table_name}\n"
+    
+    # Add description if available
+    if table_desc:
+        document += f"Description: {table_desc}\n"
+    
+    # Add column information
+    document += "\nColumns:\n"
+    for column in table_data.get("schema", []):
+        column_name = column.get("columnName", "")
+        column_type = column.get("type", "unknown")
+        column_desc = column.get("description", "")
+        
+        document += f"- {column_name} ({column_type})"
+        if column_desc:
+            document += f": {column_desc}"
+        document += "\n"
+    
+    # Add association information
+    associations = table_data.get("associations", [])
+    if associations:
+        document += "\nAssociations:\n"
+        for assoc in associations:
+            related_table = assoc.get("table_name", "")
+            where_clause = assoc.get("where", "")
+            document += f"- Related to {related_table} on {where_clause}\n"
+    
+    # Add example data if available
+    # Note: Example data is presented differently in the Denodo response format
+    # Each column's example_data field might contain examples
+    document += "\nExample data:\n"
+    examples_found = False
+    
+    for column in table_data.get("schema", []):
+        column_name = column.get("columnName", "")
+        example_data = column.get("example_data", [])
+        
+        if example_data:
+            examples_found = True
+            document += f"- {column_name}: {', '.join(str(ex) for ex in example_data)}\n"
+    
+    if not examples_found:
+        document += "- No example data available\n"
+    
+    return document
+
+def create_column_document(database_name, table_name, column_data, table_data):
+    """
+    Create a text document describing a column for embedding.
+    
+    Args:
+        database_name (str): The database name
+        table_name (str): The table name
+        column_data (dict): Column metadata
+        table_data (dict): Parent table metadata
+        
+    Returns:
+        str: A document describing the column
+    """
+    column_name = column_data.get("columnName", "")
+    document = f"Database: {database_name}\nTable: {table_name}\nColumn: {column_name}\n"
+    
+    # Add column type
+    column_type = column_data.get("type", "unknown")
+    document += f"Type: {column_type}\n"
+    
+    # Add description if available
+    column_desc = column_data.get("description", "")
+    if column_desc:
+        document += f"Description: {column_desc}\n"
+    
+    # Add primary key information
+    is_primary_key = column_data.get("primaryKey", False)
+    document += f"Primary Key: {'Yes' if is_primary_key else 'No'}\n"
+    
+    # Add nullable information
+    is_nullable = column_data.get("nullable", True)
+    document += f"Nullable: {'Yes' if is_nullable else 'No'}\n"
+    
+    # Add example values if available
+    example_data = column_data.get("example_data", [])
+    if example_data:
+        document += "\nExample values:\n"
+        for value in example_data:
+            document += f"- {value}\n"
+    
+    # Add information about associations that involve this column
+    associations = table_data.get("associations", [])
+    if associations:
+        for assoc in associations:
+            where_clause = assoc.get("where", "")
+            if column_name in where_clause:
+                document += f"\nInvolved in association: {where_clause}\n"
+    
+    return document
+
+def load_into_chroma_with_langchain(documents):
+    """
+    Load documents into Chroma using Langchain with Ollama embeddings.
+    
+    Args:
+        documents (list): List of Langchain Document objects
+        
+    Returns:
+        dict: Dictionary of Chroma vector stores
+    """
+    vector_stores = {}
+    
+    # Ensure the database directory exists
+    os.makedirs(CHROMA_DB_PATH, exist_ok=True)
+    
+    # For each embedding model
+    for model_name in EMBEDDING_MODELS:
+        print(f"Loading data with {model_name} embedding model via Ollama...")
+        
+        # Create an Ollama embeddings object
+        embedding = OllamaEmbeddings(
+            base_url=OLLAMA_BASE_URL,
+            model=model_name
+        )
+        
+        # Create a collection path for this model
+        collection_name = f"denodo_metadata_{model_name.replace('-', '_')}"
+        persist_directory = os.path.join(CHROMA_DB_PATH, collection_name)
+        
+        # Create the vector store
+        try:
+            # Create a new vector store
+            vectorstore = Chroma.from_documents(
+                documents=documents,
+                embedding=embedding,
+                collection_name=collection_name,
+                persist_directory=persist_directory
+            )
+            
+            vector_stores[model_name] = vectorstore
+            print(f"Added {len(documents)} documents to {collection_name} collection")
+            
+            # Persist the vectorstore
+            vectorstore.persist()
+            
+        except Exception as e:
+            print(f"Error creating vector store for {model_name}: {e}")
+    
+    return vector_stores
+
+def test_query(vector_stores, query_text, n_results=5):
+    """
+    Test querying each vector store with a natural language query.
+    
+    Args:
+        vector_stores (dict): Dictionary of Chroma vector stores
+        query_text (str): Natural language query to test
+        n_results (int): Number of results to retrieve
+        
+    Returns:
+        dict: Dictionary of query results for each model
+    """
+    results = {}
+    
+    print(f"\nTesting query: '{query_text}'")
+    print("=" * 50)
+    
+    for model_name, vectorstore in vector_stores.items():
+        print(f"\nResults from {model_name}:")
+        query_results = vectorstore.similarity_search_with_score(
+            query=query_text,
+            k=n_results
+        )
+        
+        results[model_name] = query_results
+        
+        # Display the top results
+        for i, (doc, score) in enumerate(query_results):
+            print(f"\nResult {i+1} (Score: {score:.4f}):")
+            print(f"Type: {doc.metadata['type']}")
+            
+            if 'table' in doc.metadata:
+                table_info = f"Table: {doc.metadata['table']}"
+                if 'column' in doc.metadata:
+                    table_info += f", Column: {doc.metadata['column']}"
+                print(table_info)
+                
+            print(f"Document snippet: {doc.page_content[:150]}...")
+    
+    return results
+
+def save_metadata_cache(metadata, cache_file="metadata_cache.json"):
+    """Save metadata to a cache file for later use."""
+    with open(cache_file, 'w') as f:
+        json.dump(metadata, f)
+    print(f"Saved metadata to {cache_file}")
+
+def load_metadata_cache(cache_file="metadata_cache.json"):
+    """Load metadata from cache file if it exists."""
+    if os.path.exists(cache_file):
+        with open(cache_file, 'r') as f:
+            return json.load(f)
+    return None
+
+def process_file_metadata(file_path="paste.txt"):
+    """
+    Process metadata from a file instead of calling the API.
+    Useful for testing with example data.
+    
+    Args:
+        file_path (str): Path to the file containing metadata
+        
+    Returns:
+        dict: The metadata as a JSON object
+    """
+    try:
+        with open(file_path, 'r') as f:
+            data = json.load(f)
+        return data
+    except Exception as e:
+        print(f"Error loading metadata from file: {e}")
+        return None
+
+if __name__ == "__main__":
+    print("How would you like to get metadata?")
+    print("1. Call the Denodo API (Recommended for production)")
+    print("2. Use cached metadata (if available)")
+    print("3. Load from the paste.txt file (Testing only)")
+    
+    choice = input("Enter your choice (1/2/3): ")
+    
+    metadata = None
+    
+    if choice == "1":
+        # Default to 'bank' as the database name
+        default_db = "bank"
+        vdp_database_names = input(f"Enter database name (default: {default_db}): ") or default_db
+        
+        # Allow user to update auth credentials if needed
+        update_auth = input("Do you want to update authentication credentials? (y/n, default: n): ").lower() == 'y'
+        if update_auth:
+            temp_username = input(f"Enter username (current: {USERNAME}): ") or USERNAME
+            temp_password = input(f"Enter password (current: {PASSWORD}): ") or PASSWORD
+            # Update the global variables
+            globals()['USERNAME'] = temp_username
+            globals()['PASSWORD'] = temp_password
+        
+        # Retrieve metadata from Denodo API
+        print(f"Retrieving metadata from {API_BASE_URL}{METADATA_ENDPOINT} for database: {vdp_database_names}...")
+        metadata = get_denodo_metadata(
+            vdp_database_names=vdp_database_names,
+            examples_per_table=3,
+            view_descriptions=True,
+            column_descriptions=True,
+            associations=True,
+            insert=False,
+            overwrite=False
+        )
+        
+        if metadata:
+            # Save metadata to cache
+            save_metadata_cache(metadata)
+    
+    elif choice == "2":
+        # Try to load metadata from cache
+        print("Attempting to load metadata from cache...")
+        metadata = load_metadata_cache()
+    
+    else:  # choice == "3" or any other input
+        # Load metadata from file (for testing only)
+        print("Loading metadata from paste.txt file (for testing purposes)...")
+        metadata = process_file_metadata()
+    
+    if not metadata:
+        print("Failed to retrieve metadata. Exiting.")
+        exit(1)
+    
+    print("Successfully loaded metadata.")
+    
+    # Prepare Langchain documents from metadata
+    print("Preparing documents from metadata...")
+    documents = prepare_documents_from_metadata(metadata)
+    print(f"Created {len(documents)} documents")
+    
+    # Load documents into Chroma with different embedding models using Langchain
+    print("Loading documents into Chroma vector store with Ollama embeddings...")
+    vector_stores = load_into_chroma_with_langchain(documents)
+    
+    # Test each model with a sample query
+    test_query_text = input("\nEnter a natural language query to test retrieval: ")
+    test_results = test_query(vector_stores, test_query_text)
+    
+    print("\nSetup complete! You can now evaluate the retrieval efficiency of each model.")
+    print("Use the model-evaluation.py script to evaluate the models comprehensively.")
+    print("You can also use the rag-query-example.py script to test the RAG implementation.")
