@@ -1,0 +1,2876 @@
+{
+  "views": [
+    {
+      "view_name": "admin.bv_sf_eda_bwc_cfaddr_d_sg",
+      "view_json": {
+        "tableName": "admin.bv_sf_eda_bwc_cfaddr_d_sg",
+        "description": "Source System: BWC, View Type: Master, Key Description: Customer Address File. It keeps addresses of Customers. Eg Residential/Registered address, mailing address.",
+        "id": 1610,
+        "schema": [
+          {
+            "columnName": "cfabdn",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Building Name or Post Office Name Associated With Customer Address. Customer address file contains building name or post office name associated with customer, used for correspondence.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfabnm",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Address Block Number Identifier. The block, house, godown or building number of a customer's address, used for identification and location purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfabox",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Mail Delivery Box Number. Customer's postal address box or locked bag number used for mail delivery.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfadfm",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Address Format Classification Code. The address format code is used to categorize and standardize customer addresses for efficient processing and delivery, ensuring accurate communication and reducing errors in address handling.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfadid",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Address Record Identifier. A unique identifier assigned to each customer address record for tracking and management purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfadl6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Customer Address Last Maintenance Date. The date when the customer address information was last updated or maintained in the system, ensuring data accuracy and relevance for business operations and customer communication.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfadlm",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "description": "Customer Address Last Maintenance Date. The date when the customer address was last updated or maintained in the system, ensuring data accuracy.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfadsq",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Address Sequence Number Identifier. A unique sequence number indicating the last maintained address for a customer, used for tracking address changes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfadtp",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Address Type Code. The type of address associated with a customer, such as residential or registered address, used for correspondence and identification purposes within the banking system.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfastn",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Street Address Line. The street name of a customer's address, which is a part of their residential or registered address.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfasty",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Storey Number of Customer Address. Storey number of a customer's address, typically part of a building or property identifier.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfaunm",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Unit Number Identifier. Customer address file contains unit number information for customer identification and communication purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfbada",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Undelivered Mail Flag Indicator. A flag indicating whether mail sent to a customer's address was undeliverable, used for address validation.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfcif",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Customer Identification Number (CIF). A unique identifier assigned to a customer for identification and record-keeping purposes across the bank's systems.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfcity",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer City Address. The city where a customer resides or has a registered address, used for correspondence and address verification purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfcoun",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Country Code. The country where the customer resides or is registered, used for address verification and compliance purposes always.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfforn",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Foreign Address Identifier Flag. A flag indicating whether the customer's address is a foreign address or not, used for geographical classification.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cflmti",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Last Modified Time Stamp. The timestamp when the customer address information was last updated or modified in the system, ensuring data accuracy and integrity.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfna2",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Alias Name. Customer's additional name or alias used for identification or communication purposes in banking operations.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfna3",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Additional Name Two. Customer's secondary name used for address identification and communication purposes in banking operations.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfna4",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Address Line One. Customer address line used for correspondence or communication purposes in daily operations.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfna5",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Address Line Two. Customer's secondary address line, often used for mailing or other correspondence purposes, providing additional location details.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfna6",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Address_Line_3_Description. Customer address line 3, part of customer address file containing residential or registered address details.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfna7",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Address Line Four Details. Customer address line information stored for communication and correspondence purposes, specifically address line 4 details.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfstat",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Address State Code. The state or province of a customer's address, used for geographic identification and address verification purposes always.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfzip",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Postal Code Identifier. The postal code assigned to a specific geographic area for mail delivery and address identification purposes globally.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "proc_instance_id",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "proc_ts",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "site_id",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "biz_dt",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          }
+        ],
+        "tagDetails": [
+          {
+            "name": "base_tables"
+          }
+        ],
+        "associations": []
+      },
+      "view_text": "=====Table admin.bv_sf_eda_bwc_cfaddr_d_sg=====\nDescription: Source System: BWC, View Type: Master, Key Description: Customer Address File. It keeps addresses of Customers. Eg Residential/Registered address, mailing address.\nColumns:\n- cfabdn (text) -> Building Name or Post Office Name Associated With Customer Address. Customer address file contains building name or post office name associated with customer, used for correspondence..\n- cfabnm (text) -> Customer Address Block Number Identifier. The block, house, godown or building number of a customer's address, used for identification and location purposes..\n- cfabox (text) -> Mail Delivery Box Number. Customer's postal address box or locked bag number used for mail delivery..\n- cfadfm (text) -> Address Format Classification Code. The address format code is used to categorize and standardize customer addresses for efficient processing and delivery, ensuring accurate communication and reducing errors in address handling..\n- cfadid (text) -> Customer Address Record Identifier. A unique identifier assigned to each customer address record for tracking and management purposes..\n- cfadl6 (long) -> Customer Address Last Maintenance Date. The date when the customer address information was last updated or maintained in the system, ensuring data accuracy and relevance for business operations and customer communication..\n- cfadlm (timestamp) -> Customer Address Last Maintenance Date. The date when the customer address was last updated or maintained in the system, ensuring data accuracy..\n- cfadsq (long) -> Address Sequence Number Identifier. A unique sequence number indicating the last maintained address for a customer, used for tracking address changes..\n- cfadtp (text) -> Customer Address Type Code. The type of address associated with a customer, such as residential or registered address, used for correspondence and identification purposes within the banking system..\n- cfastn (text) -> Street Address Line. The street name of a customer's address, which is a part of their residential or registered address..\n- cfasty (text) -> Storey Number of Customer Address. Storey number of a customer's address, typically part of a building or property identifier..\n- cfaunm (text) -> Unit Number Identifier. Customer address file contains unit number information for customer identification and communication purposes..\n- cfbada (text) -> Undelivered Mail Flag Indicator. A flag indicating whether mail sent to a customer's address was undeliverable, used for address validation..\n- cfcif (long) -> Customer Identification Number (CIF). A unique identifier assigned to a customer for identification and record-keeping purposes across the bank's systems..\n- cfcity (text) -> Customer City Address. The city where a customer resides or has a registered address, used for correspondence and address verification purposes..\n- cfcoun (text) -> Customer Country Code. The country where the customer resides or is registered, used for address verification and compliance purposes always..\n- cfforn (text) -> Foreign Address Identifier Flag. A flag indicating whether the customer's address is a foreign address or not, used for geographical classification..\n- cflmti (long) -> Last Modified Time Stamp. The timestamp when the customer address information was last updated or modified in the system, ensuring data accuracy and integrity..\n- cfna2 (text) -> Customer Alias Name. Customer's additional name or alias used for identification or communication purposes in banking operations..\n- cfna3 (text) -> Additional Name Two. Customer's secondary name used for address identification and communication purposes in banking operations..\n- cfna4 (text) -> Address Line One. Customer address line used for correspondence or communication purposes in daily operations..\n- cfna5 (text) -> Address Line Two. Customer's secondary address line, often used for mailing or other correspondence purposes, providing additional location details..\n- cfna6 (text) -> Address_Line_3_Description. Customer address line 3, part of customer address file containing residential or registered address details..\n- cfna7 (text) -> Address Line Four Details. Customer address line information stored for communication and correspondence purposes, specifically address line 4 details..\n- cfstat (text) -> Customer Address State Code. The state or province of a customer's address, used for geographic identification and address verification purposes always..\n- cfzip (long) -> Postal Code Identifier. The postal code assigned to a specific geographic area for mail delivery and address identification purposes globally..\n- proc_instance_id (text)\n- proc_ts (timestamp)\n- site_id (text)\n- biz_dt (text)\n\n",
+      "database_name": "admin",
+      "tag_base_tables": "1"
+    },
+    {
+      "view_name": "admin.bv_sf_eda_bwc_cfacct_d_sg",
+      "view_json": {
+        "tableName": "admin.bv_sf_eda_bwc_cfacct_d_sg",
+        "description": "Source System: BWC, View Type: Master, Key Description: Account Relationship File. It keeps the account holders of an account eg Primary, Secondary, Authorised Signatory etc",
+        "id": 1609,
+        "schema": [
+          {
+            "columnName": "cfanos",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "The name associated with the account order, representing the individual or entity linked to the account. Account Order Name Association.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfmtim",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "The last time the account relationship information was updated or modified, recorded in a system. Last Maintenance Time Stamp for Account Relationship.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfadl6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "The date when the customer account relationship information was last updated or modified, ensuring data accuracy and integrity. Last Maintenance Date.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfnotc",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "A flag indicating whether an account holder receives mail notifications or statements from the bank, typically used for communication purposes. Receive Mail Indicator.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfapao",
+            "type": "decimal",
+            "sourceType": "NUMERIC",
+            "description": "The percentage of ownership an individual or entity has in an account, defining their stake or interest. Account Ownership Percentage.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfcif",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "A unique identifier assigned to a customer for identification and record-keeping purposes in the banking system, facilitating various transactions and account management activities efficiently. Customer Identification Number.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfgtep",
+            "type": "decimal",
+            "sourceType": "NUMERIC",
+            "description": "The percentage of guarantee provided by an account holder or a third party for a loan or credit facility, defining their level of financial commitment and risk exposure. Guarantee Percentage Value.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfatyp",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "The account type code indicating the type of account relationship, such as Primary or Secondary, held by an individual or organization, defining their role and permissions. Account Relationship Type Code.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfacc",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Account Relationship File stores account numbers of account holders, such as Primary, Secondary, Authorised Signatory etc. Customer Account Identifier.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfhldm",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "The hold mail code indicates whether account holder's mail should be held or not, typically used for communication purposes. Hold Mail Indicator Code.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfuaty",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "The account type defines the nature of the account, such as savings, current, or credit card, held by a customer, and is used for various banking operations and reporting purposes. Account Type Classification.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfacid",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "A unique identifier assigned to each record in the account relationship file for identification purposes. Customer Facility Account Identifier.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfaref",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Account reference number assigned to a customer account for identification and transaction purposes within the banking system. Customer Account Reference Identifier.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfaala",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "The address sequence number is a unique identifier assigned to an address within a customer's account records. Address Sequence Number Identifier for Customer Account Records.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfacjn",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "The name conjunction of an account holder, describing their relationship with the account. Account Holder Name Conjunction Description.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfacjp",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "The position of conjunction in a name, typically used in Asian naming conventions to denote relationships. Name Conjunction Position Code.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfalis",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "The sequence number assigned to an alias for an account holder in a financial institution's database system. Account Alias Sequence Number Identifier.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfucd7",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "description": "The date when the account was created, represented in a numerical format, specifically in YYYYDDD. Create Date (YYYYDDD).",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfusrc",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "The source code indicating where the account relationship information was originated from, used for tracking and auditing purposes within the bank's systems. Customer Funding Source Reference Code.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfapio",
+            "type": "decimal",
+            "sourceType": "NUMERIC",
+            "description": "The percentage of account earnings ownership for an account holder, defining their share of financial benefits. Account Earnings Ownership Percentage.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfgte",
+            "type": "decimal",
+            "sourceType": "NUMERIC",
+            "description": "The amount guaranteed by an account holder or a third party for a specific financial obligation. Guarantee Amount Value.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "proc_instance_id",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfsnme",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "The short name of an account holder, used to identify the primary or secondary account holders. Account Holder Short Name.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cficsm",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "The indicator that determines if an account holder is included in a combined statement, defining their relationship with the account. Combine Statement Inclusion Indicator.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfucd6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "The date when the account relationship information was created in the system for record keeping purposes. Account Relationship Creation Date.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfrelp",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "The code that defines the relationship between an account holder and the account, such as Primary, Secondary, or Authorised Signatory, used for account management and access control purposes. Account Relationship Code Type.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfrela",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Account relationship code that defines the type of account holder, such as Primary or Secondary. Account Relationship Type Code.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfadlm",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "description": "The date when the account information was last updated or maintained by the system administrators or users. Last Maintenance Date of Account Relationship.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "site_id",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "biz_dt",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "proc_ts",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfshrp",
+            "type": "decimal",
+            "sourceType": "NUMERIC",
+            "description": "The percentage of shares held by an individual or entity in a company or account, defining their ownership stake. Shareholding Percentage Value.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          }
+        ],
+        "tagDetails": [
+          {
+            "name": "base_tables"
+          }
+        ],
+        "associations": []
+      },
+      "view_text": "=====Table admin.bv_sf_eda_bwc_cfacct_d_sg=====\nDescription: Source System: BWC, View Type: Master, Key Description: Account Relationship File. It keeps the account holders of an account eg Primary, Secondary, Authorised Signatory etc\nColumns:\n- cfanos (long) -> The name associated with the account order, representing the individual or entity linked to the account. Account Order Name Association..\n- cfmtim (long) -> The last time the account relationship information was updated or modified, recorded in a system. Last Maintenance Time Stamp for Account Relationship..\n- cfadl6 (long) -> The date when the customer account relationship information was last updated or modified, ensuring data accuracy and integrity. Last Maintenance Date..\n- cfnotc (text) -> A flag indicating whether an account holder receives mail notifications or statements from the bank, typically used for communication purposes. Receive Mail Indicator..\n- cfapao (decimal) -> The percentage of ownership an individual or entity has in an account, defining their stake or interest. Account Ownership Percentage..\n- cfcif (long) -> A unique identifier assigned to a customer for identification and record-keeping purposes in the banking system, facilitating various transactions and account management activities efficiently. Customer Identification Number..\n- cfgtep (decimal) -> The percentage of guarantee provided by an account holder or a third party for a loan or credit facility, defining their level of financial commitment and risk exposure. Guarantee Percentage Value..\n- cfatyp (text) -> The account type code indicating the type of account relationship, such as Primary or Secondary, held by an individual or organization, defining their role and permissions. Account Relationship Type Code..\n- cfacc (long) -> Account Relationship File stores account numbers of account holders, such as Primary, Secondary, Authorised Signatory etc. Customer Account Identifier..\n- cfhldm (text) -> The hold mail code indicates whether account holder's mail should be held or not, typically used for communication purposes. Hold Mail Indicator Code..\n- cfuaty (text) -> The account type defines the nature of the account, such as savings, current, or credit card, held by a customer, and is used for various banking operations and reporting purposes. Account Type Classification..\n- cfacid (text) -> A unique identifier assigned to each record in the account relationship file for identification purposes. Customer Facility Account Identifier..\n- cfaref (text) -> Account reference number assigned to a customer account for identification and transaction purposes within the banking system. Customer Account Reference Identifier..\n- cfaala (long) -> The address sequence number is a unique identifier assigned to an address within a customer's account records. Address Sequence Number Identifier for Customer Account Records..\n- cfacjn (text) -> The name conjunction of an account holder, describing their relationship with the account. Account Holder Name Conjunction Description..\n- cfacjp (text) -> The position of conjunction in a name, typically used in Asian naming conventions to denote relationships. Name Conjunction Position Code..\n- cfalis (long) -> The sequence number assigned to an alias for an account holder in a financial institution's database system. Account Alias Sequence Number Identifier..\n- cfucd7 (timestamp) -> The date when the account was created, represented in a numerical format, specifically in YYYYDDD. Create Date (YYYYDDD)..\n- cfusrc (text) -> The source code indicating where the account relationship information was originated from, used for tracking and auditing purposes within the bank's systems. Customer Funding Source Reference Code..\n- cfapio (decimal) -> The percentage of account earnings ownership for an account holder, defining their share of financial benefits. Account Earnings Ownership Percentage..\n- cfgte (decimal) -> The amount guaranteed by an account holder or a third party for a specific financial obligation. Guarantee Amount Value..\n- proc_instance_id (text)\n- cfsnme (text) -> The short name of an account holder, used to identify the primary or secondary account holders. Account Holder Short Name..\n- cficsm (text) -> The indicator that determines if an account holder is included in a combined statement, defining their relationship with the account. Combine Statement Inclusion Indicator..\n- cfucd6 (long) -> The date when the account relationship information was created in the system for record keeping purposes. Account Relationship Creation Date..\n- cfrelp (text) -> The code that defines the relationship between an account holder and the account, such as Primary, Secondary, or Authorised Signatory, used for account management and access control purposes. Account Relationship Code Type..\n- cfrela (text) -> Account relationship code that defines the type of account holder, such as Primary or Secondary. Account Relationship Type Code..\n- cfadlm (timestamp) -> The date when the account information was last updated or maintained by the system administrators or users. Last Maintenance Date of Account Relationship..\n- site_id (text)\n- biz_dt (text)\n- proc_ts (timestamp)\n- cfshrp (decimal) -> The percentage of shares held by an individual or entity in a company or account, defining their ownership stake. Shareholding Percentage Value..\n\n",
+      "database_name": "admin",
+      "tag_base_tables": "1"
+    },
+    {
+      "view_name": "admin.bv_sf_eda_bwc_cfmast_d_sg",
+      "view_json": {
+        "tableName": "admin.bv_sf_eda_bwc_cfmast_d_sg",
+        "description": "Source System: BWC, View Type: Master, Key Description: Customer Master File (Parent file for CIF) It keeps Customers Basic Data with corresponding CIF Numbers of the bank eg Primary ID, Primary Name, Citizenship.",
+        "id": 1612,
+        "schema": [
+          {
+            "columnName": "cfreci",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Record Identifier Code. A unique identifier assigned to each customer record in the CIF Master File for reference purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfretn",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Customer Data Retention Period in banking system for regulatory compliance. The duration for which customer data is retained in the bank's system for regulatory and operational purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfbnkn",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Bank Identification Number. A unique identifier assigned to a bank, used for customer identification and transaction processing purposes within the banking system.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfbrnn",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Branch Identifier Code. The unique identifier for a branch within the bank's organizational structure, used for customer data management.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfcost",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Cost Centre Identifier. Cost centre is a department or function within an organization that incurs costs, used for financial management and reporting, helping track expenses and allocate resources effectively across the organization.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfcif",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Customer Identification File Number. A unique identifier assigned to a customer by the bank for identification and record-keeping purposes, enabling efficient customer data management.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfzsal",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Salutation. A formal or informal title used to address a customer, such as Mr, Mrs, Ms, or Dr, in a banking context for personalization and communication purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfna1",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Primary Name Identifier. Customer's primary name as recorded in the bank's Customer Information File (CIF) Master File for identification purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfna1a",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Secondary Name. Customer's secondary name used for identification and record-keeping purposes in the bank's system.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfsnme",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Short Name or Alias Identifier. Customer's abbreviated name used for identification and daily banking transactions purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfcsts",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Customer Account Status. A code used to indicate the current status of a customer, such as active or inactive, in the banking system for risk assessment and compliance purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfinqc",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Inquiry Code Value. Customer Inquiry Code is a unique identifier used for customer information retrieval and verification purposes in the banking system, ensuring secure and efficient access to customer data.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfinsc",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Bank Insider Code Classification. The Insider code is a unique identifier assigned to individuals who are considered insiders of the bank, used for regulatory and compliance purposes to monitor transactions and activities.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfvipc",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "VIP Customer Code Classification. A unique identifier assigned to high-value customers, denoting special privileges and services offered by the bank.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfdead",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Deceased Customer Identifier Flag. A flag indicating whether a customer is deceased or not, used for risk and compliance purposes in banking operations.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfhldm",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Hold Mail Status Flag. Customer's mail holding status, indicating whether mail should be held for the customer, used for communication purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfhldp",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer promotional mail opt-out indicator code. A code indicating whether a customer has opted out of promotional mail, influencing targeted marketing campaigns.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfproa",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Profitability Analysis Indicator Code. Profit analysis indicator is a code used to categorize and analyze customer profitability.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfsic1",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Standard Industrial Classification Code Indicator. The SIC #1 user defined indicator is a classification code used to identify a customer's industry affiliation, facilitating targeted financial services and regulatory reporting, enhancing customer data management.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfsic2",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Secondary Standard Industrial Classification Indicator. A code used to categorize customers into specific industries for risk assessment and regulatory reporting purposes in banking.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfsic3",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Third SIC Code User Indicator. A code used to indicate a specific classification or status of a customer, as defined by the bank's internal SIC system, for risk assessment and reporting purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfsic4",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer SIC Code Classification. The SIC #4 user defined indicator is a classification code used to categorize customers based on their business activities, providing a standardized way to identify and manage customer relationships.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfsic5",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer SIC Category 5 Indicator. The SIC #5 user defined indicator is a classification code used to categorize customers based on specific criteria, providing additional information for risk assessment and customer profiling purposes in the banking system.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfsic6",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "User Defined SIC Indicator Six for Customer Classification. The SIC #6 user defined indicator is a classification code used to identify a specific industry or sector, providing additional information about a customer's business activities and risk profile.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfsic7",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Standard Industrial Classification #7 User Indicator. A code used to indicate a specific classification or status assigned to a customer, based on SIC #7 criteria, for internal banking purposes and risk assessment.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfsic8",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "User Defined SIC Indicator for Customer Classification. A code used to indicate a specific classification or status assigned to a customer, based on SIC #8.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfssno",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Identification Number. A unique identifier assigned to a customer for identification and record-keeping purposes in the bank's system, ensuring accurate customer data management and retrieval.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfsscd",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Identification Type Code. The ID type code representing the type of identification document or certificate issued to a customer, used for verification and authentication purposes in the banking system for risk assessment and compliance.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfcidt",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Identification Issue Country Code. The country code where the customer's ID was issued, used for identification and verification purposes in the bank's system.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfcitz",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Citizenship or Incorporation Country Code. A code representing the country of citizenship or incorporation for a customer, used for identification and record-keeping purposes in the bank's Customer Information File (CIF) system, ensuring accurate customer data management.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfcopr",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Country of Residence or Operation Code. The country code where a customer resides or conducts business operations, used for identification and localization purposes in the bank's systems.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfrace",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Race Classification Code. The customer's racial or ethnic background, used for demographic and regulatory purposes in the bank's CIF Master File.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfbird",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "description": "Customer Birth or Incorporation Date Identifier. Customer's birth or incorporation date stored in YYYYDDD format, a crucial identifier in the CIF Master File.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfbir6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Customer Birth or Incorporation Date Identifier. The date of birth or incorporation of a customer, stored in a standardized format (DDMMYY), used for identification and verification purposes in the bank's systems.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfmard",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "description": "Customer Marriage Date Identifier. The CIF Master File stores customer basic data, including CIF Numbers, Primary ID, Primary Name, and Citizenship, which are essential for banking operations and customer identification.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfmar6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Customer Marriage Date Identifier. The CIF Master File stores customer basic data, including CIF numbers, primary ID, primary name, and citizenship, which enables effective customer information management.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfmars",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Marital Status Code Classification. Marital status code description is a classification of customer's marital status for identification and record-keeping purposes in the bank.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfsex",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Sex Classification Code. The sex code indicating the customer's gender, used for identification and record-keeping purposes in the bank's system.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfclas",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Classification Code. Customer type code classification defining customer category in the bank's system for identification and management purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfbust",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Business Type Code. The business type or MAS code that categorizes a customer's business activities, used for identification and classification purposes in the bank's systems.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfscla",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Classification Code. The classification or category assigned to a customer, typically used for risk assessment or product eligibility.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfcrat",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Credit Rating Score. The credit rating assigned to a customer, reflecting their creditworthiness and loan repayment history, used for risk assessment.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfgrup",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Identification Group Reference Unique Prefix. CIF group code description is a classification used to categorize customers based on their characteristics.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfccyc",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Customer Identification Cycle Code. CIF combined cycle details stored for customer identification and management purposes in the bank's system.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfwhcd",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Federal Warehouse Code for Customer Identification. The Fed W/H code is a unique identifier assigned to a customer, used for internal banking purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfwhpr",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Customer Information Warehouse Processing Reference Code. The CIF Warehouse code indicating specific customer information storage location within the bank's system, facilitating data management and retrieval processes efficiently across different departments.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfwhdt",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "description": "Customer Information Load Date. The Fed W/H date, represented in the format YYYYDDD, signifies the date when customer's information was loaded into the system, crucial for auditing and data management purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfwhd6",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Federal Withholding Date. Customer's Federal Withholding Date information stored in a specific format (DDMMYY) for banking operations.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfuic1",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "User Identification Code One for Customer Classification. A unique identifier used to categorize or classify customers, often used for internal reference purposes within the bank.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfuic2",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "UIC #2 Code. Customer's secondary Unique Identification Code for internal bank usage and verification processes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfuic3",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "UIC3 User Defined Code. Customer's User-Defined Code stored for identification and classification purposes in the bank's system.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfuic4",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "UIC4 User Defined Code. Customer's User-Defined Code stored for identification and classification purposes in the bank's system.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfuic5",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "User-Defined Code 5 for Customer Identification. A unique identifier used to categorize or classify customers, specifically the fifth user-defined code.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfuic6",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "UIC sixth identifier code. Customer's sixth user-defined Unique Identification Code stored as part of Customer Information File.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfuic7",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Unique Identification Code Seven. Customer's Unique Identification Code maintained for internal bank usage and regulatory compliance purposes globally.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfuic8",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "UIC Eighth Identifier Code. Customer's eighth user-defined code stored for internal bank identification and classification purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfresd",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Ownership Status Code. Ownership status code indicating whether a customer is a primary or MAS (Monetary Authority of Singapore) owner.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfzinc",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "MAS Industry Classification Code. MAS Industry Code refers to a classification code assigned by Monetary Authority of Singapore for regulatory purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfzesi",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Service Recovery Flag Indicator. Service recovery indicator that tracks customer service recovery status in the banking system efficiently always.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfadsq",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Customer Information File Address Sequence Number. The CIF address sequence number is a unique identifier for customer address history, tracking changes to customer addresses over time, ensuring data integrity and accuracy in customer information management.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfzcpf",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer CPF Identifier Number. Customer's Central Provident Fund (CPF) number is a unique identifier for Singaporean citizens.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfzcdp",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Identification Number Code. Customer identification number assigned by the bank for internal reference purposes globally.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfzcom",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Bank Company Identification Code. The unique identifier assigned to a bank company, used for internal and external identification purposes, facilitating transactions and data management within the banking system.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfzdep",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Bank Employee Department Code. The department code assigned to a bank employee, used for organizational purposes and employee management within the bank.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfzemp",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Bank Employee Identification Number. A unique identifier assigned to bank employees for internal reference and record-keeping purposes in the banking system.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cforgd",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "description": "Customer Record Creation Date. The date when the customer record was created in the bank's system, stored in YYYYDDD format for reference.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cforg6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Customer Record Creation Date. The date when the customer record was created in the bank's system, stored in DDMMYY format for easy reference.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfissd",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "description": "Customer Identification Issue Date. The date when the customer's identification document was issued, stored in a numerical format of year and day of the year.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfiss6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Customer Identification Issue Date. The date when the customer's identification document was issued, stored in a specific format (DDMMYY) for verification purposes within the bank's system.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfmuid",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Identification Field. Customer's unique identifier used for tracking and maintaining their basic data within the bank's system, linked to CIF Numbers.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfmwid",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Create Workstation Identifier Code. Customer workstation identifier used for creating customer master data, linked to CIF numbers.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfmtim",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Last Maintenance Time Stamp. The timestamp when the customer information was last updated or modified in the system for reference purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfdlm",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "description": "Customer Information Last Maintenance Date. The date when the customer information was last updated or maintained in the system, ensuring data accuracy and relevance.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfdlm6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Customer Information Last Maintenance Date. The date when the customer information was last updated or maintained in the system, ensuring data accuracy and relevance.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfdcd7",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "description": "Customer Deceased or Dissolved Date Record. The date on which a customer or entity is marked as deceased or dissolved, recorded in YYYYDDD format.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfdcd6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Customer Deceased Date. The date on which a customer or entity is marked as deceased or dissolved, recorded in DDMMYY format, used for risk and compliance purposes in the bank's systems.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfstaf",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Staff Identification Code. Staff code identifying the bank employee associated with a customer's account or relationship, used for internal tracking and management purposes within the bank's systems.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfbnki",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Banker Identification Number. The Banker ID number or Charity Act ID is a unique identifier assigned to a banker or charity organization, used for identification and verification purposes within the bank's system, enabling secure and accurate tracking of customer interactions and transactions.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "proc_instance_id",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "proc_ts",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "site_id",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "The site_id field is used to identify and distinguish between different locations, branches, or operational sites within the organization. This information helps in tracking and managing data specific to each site, facilitating site-based reporting and analysis.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "biz_dt",
+            "type": "text",
+            "sourceType": "CHAR",
+            "description": "Business Date indicates the date from which a particular record or information has been created. ",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          }
+        ],
+        "tagDetails": [
+          {
+            "name": "base_tables"
+          }
+        ],
+        "associations": []
+      },
+      "view_text": "=====Table admin.bv_sf_eda_bwc_cfmast_d_sg=====\nDescription: Source System: BWC, View Type: Master, Key Description: Customer Master File (Parent file for CIF) It keeps Customers Basic Data with corresponding CIF Numbers of the bank eg Primary ID, Primary Name, Citizenship.\nColumns:\n- cfreci (text) -> Customer Record Identifier Code. A unique identifier assigned to each customer record in the CIF Master File for reference purposes..\n- cfretn (long) -> Customer Data Retention Period in banking system for regulatory compliance. The duration for which customer data is retained in the bank's system for regulatory and operational purposes..\n- cfbnkn (long) -> Bank Identification Number. A unique identifier assigned to a bank, used for customer identification and transaction processing purposes within the banking system..\n- cfbrnn (long) -> Branch Identifier Code. The unique identifier for a branch within the bank's organizational structure, used for customer data management..\n- cfcost (long) -> Cost Centre Identifier. Cost centre is a department or function within an organization that incurs costs, used for financial management and reporting, helping track expenses and allocate resources effectively across the organization..\n- cfcif (long) -> Customer Identification File Number. A unique identifier assigned to a customer by the bank for identification and record-keeping purposes, enabling efficient customer data management..\n- cfzsal (text) -> Customer Salutation. A formal or informal title used to address a customer, such as Mr, Mrs, Ms, or Dr, in a banking context for personalization and communication purposes..\n- cfna1 (text) -> Customer Primary Name Identifier. Customer's primary name as recorded in the bank's Customer Information File (CIF) Master File for identification purposes..\n- cfna1a (text) -> Customer Secondary Name. Customer's secondary name used for identification and record-keeping purposes in the bank's system..\n- cfsnme (text) -> Short Name or Alias Identifier. Customer's abbreviated name used for identification and daily banking transactions purposes..\n- cfcsts (long) -> Customer Account Status. A code used to indicate the current status of a customer, such as active or inactive, in the banking system for risk assessment and compliance purposes..\n- cfinqc (text) -> Customer Inquiry Code Value. Customer Inquiry Code is a unique identifier used for customer information retrieval and verification purposes in the banking system, ensuring secure and efficient access to customer data..\n- cfinsc (text) -> Bank Insider Code Classification. The Insider code is a unique identifier assigned to individuals who are considered insiders of the bank, used for regulatory and compliance purposes to monitor transactions and activities..\n- cfvipc (text) -> VIP Customer Code Classification. A unique identifier assigned to high-value customers, denoting special privileges and services offered by the bank..\n- cfdead (text) -> Deceased Customer Identifier Flag. A flag indicating whether a customer is deceased or not, used for risk and compliance purposes in banking operations..\n- cfhldm (text) -> Customer Hold Mail Status Flag. Customer's mail holding status, indicating whether mail should be held for the customer, used for communication purposes..\n- cfhldp (text) -> Customer promotional mail opt-out indicator code. A code indicating whether a customer has opted out of promotional mail, influencing targeted marketing campaigns..\n- cfproa (text) -> Customer Profitability Analysis Indicator Code. Profit analysis indicator is a code used to categorize and analyze customer profitability..\n- cfsic1 (text) -> Standard Industrial Classification Code Indicator. The SIC #1 user defined indicator is a classification code used to identify a customer's industry affiliation, facilitating targeted financial services and regulatory reporting, enhancing customer data management..\n- cfsic2 (text) -> Secondary Standard Industrial Classification Indicator. A code used to categorize customers into specific industries for risk assessment and regulatory reporting purposes in banking..\n- cfsic3 (text) -> Third SIC Code User Indicator. A code used to indicate a specific classification or status of a customer, as defined by the bank's internal SIC system, for risk assessment and reporting purposes..\n- cfsic4 (text) -> Customer SIC Code Classification. The SIC #4 user defined indicator is a classification code used to categorize customers based on their business activities, providing a standardized way to identify and manage customer relationships..\n- cfsic5 (text) -> Customer SIC Category 5 Indicator. The SIC #5 user defined indicator is a classification code used to categorize customers based on specific criteria, providing additional information for risk assessment and customer profiling purposes in the banking system..\n- cfsic6 (text) -> User Defined SIC Indicator Six for Customer Classification. The SIC #6 user defined indicator is a classification code used to identify a specific industry or sector, providing additional information about a customer's business activities and risk profile..\n- cfsic7 (text) -> Standard Industrial Classification #7 User Indicator. A code used to indicate a specific classification or status assigned to a customer, based on SIC #7 criteria, for internal banking purposes and risk assessment..\n- cfsic8 (text) -> User Defined SIC Indicator for Customer Classification. A code used to indicate a specific classification or status assigned to a customer, based on SIC #8..\n- cfssno (text) -> Customer Identification Number. A unique identifier assigned to a customer for identification and record-keeping purposes in the bank's system, ensuring accurate customer data management and retrieval..\n- cfsscd (text) -> Customer Identification Type Code. The ID type code representing the type of identification document or certificate issued to a customer, used for verification and authentication purposes in the banking system for risk assessment and compliance..\n- cfcidt (text) -> Customer Identification Issue Country Code. The country code where the customer's ID was issued, used for identification and verification purposes in the bank's system..\n- cfcitz (text) -> Customer Citizenship or Incorporation Country Code. A code representing the country of citizenship or incorporation for a customer, used for identification and record-keeping purposes in the bank's Customer Information File (CIF) system, ensuring accurate customer data management..\n- cfcopr (text) -> Country of Residence or Operation Code. The country code where a customer resides or conducts business operations, used for identification and localization purposes in the bank's systems..\n- cfrace (text) -> Customer Race Classification Code. The customer's racial or ethnic background, used for demographic and regulatory purposes in the bank's CIF Master File..\n- cfbird (timestamp) -> Customer Birth or Incorporation Date Identifier. Customer's birth or incorporation date stored in YYYYDDD format, a crucial identifier in the CIF Master File..\n- cfbir6 (long) -> Customer Birth or Incorporation Date Identifier. The date of birth or incorporation of a customer, stored in a standardized format (DDMMYY), used for identification and verification purposes in the bank's systems..\n- cfmard (timestamp) -> Customer Marriage Date Identifier. The CIF Master File stores customer basic data, including CIF Numbers, Primary ID, Primary Name, and Citizenship, which are essential for banking operations and customer identification..\n- cfmar6 (long) -> Customer Marriage Date Identifier. The CIF Master File stores customer basic data, including CIF numbers, primary ID, primary name, and citizenship, which enables effective customer information management..\n- cfmars (text) -> Customer Marital Status Code Classification. Marital status code description is a classification of customer's marital status for identification and record-keeping purposes in the bank..\n- cfsex (text) -> Customer Sex Classification Code. The sex code indicating the customer's gender, used for identification and record-keeping purposes in the bank's system..\n- cfclas (text) -> Customer Classification Code. Customer type code classification defining customer category in the bank's system for identification and management purposes..\n- cfbust (text) -> Customer Business Type Code. The business type or MAS code that categorizes a customer's business activities, used for identification and classification purposes in the bank's systems..\n- cfscla (text) -> Customer Classification Code. The classification or category assigned to a customer, typically used for risk assessment or product eligibility..\n- cfcrat (text) -> Customer Credit Rating Score. The credit rating assigned to a customer, reflecting their creditworthiness and loan repayment history, used for risk assessment..\n- cfgrup (text) -> Customer Identification Group Reference Unique Prefix. CIF group code description is a classification used to categorize customers based on their characteristics..\n- cfccyc (long) -> Customer Identification Cycle Code. CIF combined cycle details stored for customer identification and management purposes in the bank's system..\n- cfwhcd (long) -> Federal Warehouse Code for Customer Identification. The Fed W/H code is a unique identifier assigned to a customer, used for internal banking purposes..\n- cfwhpr (long) -> Customer Information Warehouse Processing Reference Code. The CIF Warehouse code indicating specific customer information storage location within the bank's system, facilitating data management and retrieval processes efficiently across different departments..\n- cfwhdt (timestamp) -> Customer Information Load Date. The Fed W/H date, represented in the format YYYYDDD, signifies the date when customer's information was loaded into the system, crucial for auditing and data management purposes..\n- cfwhd6 (text) -> Customer Federal Withholding Date. Customer's Federal Withholding Date information stored in a specific format (DDMMYY) for banking operations..\n- cfuic1 (text) -> User Identification Code One for Customer Classification. A unique identifier used to categorize or classify customers, often used for internal reference purposes within the bank..\n- cfuic2 (text) -> UIC #2 Code. Customer's secondary Unique Identification Code for internal bank usage and verification processes..\n- cfuic3 (text) -> UIC3 User Defined Code. Customer's User-Defined Code stored for identification and classification purposes in the bank's system..\n- cfuic4 (text) -> UIC4 User Defined Code. Customer's User-Defined Code stored for identification and classification purposes in the bank's system..\n- cfuic5 (text) -> User-Defined Code 5 for Customer Identification. A unique identifier used to categorize or classify customers, specifically the fifth user-defined code..\n- cfuic6 (text) -> UIC sixth identifier code. Customer's sixth user-defined Unique Identification Code stored as part of Customer Information File..\n- cfuic7 (text) -> Customer Unique Identification Code Seven. Customer's Unique Identification Code maintained for internal bank usage and regulatory compliance purposes globally..\n- cfuic8 (text) -> UIC Eighth Identifier Code. Customer's eighth user-defined code stored for internal bank identification and classification purposes..\n- cfresd (text) -> Customer Ownership Status Code. Ownership status code indicating whether a customer is a primary or MAS (Monetary Authority of Singapore) owner..\n- cfzinc (text) -> MAS Industry Classification Code. MAS Industry Code refers to a classification code assigned by Monetary Authority of Singapore for regulatory purposes..\n- cfzesi (text) -> Customer Service Recovery Flag Indicator. Service recovery indicator that tracks customer service recovery status in the banking system efficiently always..\n- cfadsq (long) -> Customer Information File Address Sequence Number. The CIF address sequence number is a unique identifier for customer address history, tracking changes to customer addresses over time, ensuring data integrity and accuracy in customer information management..\n- cfzcpf (text) -> Customer CPF Identifier Number. Customer's Central Provident Fund (CPF) number is a unique identifier for Singaporean citizens..\n- cfzcdp (text) -> Customer Identification Number Code. Customer identification number assigned by the bank for internal reference purposes globally..\n- cfzcom (text) -> Bank Company Identification Code. The unique identifier assigned to a bank company, used for internal and external identification purposes, facilitating transactions and data management within the banking system..\n- cfzdep (text) -> Bank Employee Department Code. The department code assigned to a bank employee, used for organizational purposes and employee management within the bank..\n- cfzemp (text) -> Bank Employee Identification Number. A unique identifier assigned to bank employees for internal reference and record-keeping purposes in the banking system..\n- cforgd (timestamp) -> Customer Record Creation Date. The date when the customer record was created in the bank's system, stored in YYYYDDD format for reference..\n- cforg6 (long) -> Customer Record Creation Date. The date when the customer record was created in the bank's system, stored in DDMMYY format for easy reference..\n- cfissd (timestamp) -> Customer Identification Issue Date. The date when the customer's identification document was issued, stored in a numerical format of year and day of the year..\n- cfiss6 (long) -> Customer Identification Issue Date. The date when the customer's identification document was issued, stored in a specific format (DDMMYY) for verification purposes within the bank's system..\n- cfmuid (text) -> Customer Identification Field. Customer's unique identifier used for tracking and maintaining their basic data within the bank's system, linked to CIF Numbers..\n- cfmwid (text) -> Create Workstation Identifier Code. Customer workstation identifier used for creating customer master data, linked to CIF numbers..\n- cfmtim (long) -> Last Maintenance Time Stamp. The timestamp when the customer information was last updated or modified in the system for reference purposes..\n- cfdlm (timestamp) -> Customer Information Last Maintenance Date. The date when the customer information was last updated or maintained in the system, ensuring data accuracy and relevance..\n- cfdlm6 (long) -> Customer Information Last Maintenance Date. The date when the customer information was last updated or maintained in the system, ensuring data accuracy and relevance..\n- cfdcd7 (timestamp) -> Customer Deceased or Dissolved Date Record. The date on which a customer or entity is marked as deceased or dissolved, recorded in YYYYDDD format..\n- cfdcd6 (long) -> Customer Deceased Date. The date on which a customer or entity is marked as deceased or dissolved, recorded in DDMMYY format, used for risk and compliance purposes in the bank's systems..\n- cfstaf (text) -> Staff Identification Code. Staff code identifying the bank employee associated with a customer's account or relationship, used for internal tracking and management purposes within the bank's systems..\n- cfbnki (text) -> Banker Identification Number. The Banker ID number or Charity Act ID is a unique identifier assigned to a banker or charity organization, used for identification and verification purposes within the bank's system, enabling secure and accurate tracking of customer interactions and transactions..\n- proc_instance_id (text)\n- proc_ts (timestamp)\n- site_id (text) -> The site_id field is used to identify and distinguish between different locations, branches, or operational sites within the organization. This information helps in tracking and managing data specific to each site, facilitating site-based reporting and analysis..\n- biz_dt (text) -> Business Date indicates the date from which a particular record or information has been created..\n\n",
+      "database_name": "admin",
+      "tag_base_tables": "1"
+    },
+    {
+      "view_name": "admin.bv_sf_eda_bwc_cfagrp_d_sg",
+      "view_json": {
+        "tableName": "admin.bv_sf_eda_bwc_cfagrp_d_sg",
+        "description": "Source System: BWC, View Type: Master, Key Description: Account Group file. Parent file for Accounts. It keeps the basic account details eg Account Name, status, address linkage",
+        "id": 1611,
+        "schema": [
+          {
+            "columnName": "cfcif",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Customer Identification File Identifier. A unique identifier assigned to a customer by the bank for identification and record-keeping purposes, used across various banking systems.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfagno",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Account Group Identifier. A unique identifier assigned to a group of accounts, used for categorization and management purposes within the banking system, enabling efficient account grouping and retrieval.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfagty",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Account Group Type Classification. The account group type defines the category of account groups used for customer accounts, enabling effective account management.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "ddbook",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Account Book Code Classification. The account book code indicating whether an account belongs to a specific banking division or unit.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "ddcost",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Cost Center Identifier. Cost center is a specific department or unit within an organization that incurs costs, used for financial tracking and management purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "dgroup",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Product Group Code For Customer Account Classification. The product group code or customer account type that categorizes accounts for management and reporting purposes within the bank's system, enabling effective account grouping and analysis.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfagtc",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Account Product Type Classification. Account product type description is a classification of account products offered by the bank to its customers, defining characteristics and features.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfagrl",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Account Group Relationship Type Code. The account group relationship type defines various relationships allowed for an account group in the banking system.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfusts",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Account Status Code. The status of an account, indicating its current state, such as active, inactive, or frozen, used for account management and transaction processing purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfpsts",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Account Prior Status Code. The prior status of an account, indicating its previous state or condition, used for tracking changes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfagrt",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Account Group Retention Period. The retention period assigned to an account group, determining how long account information is kept active or archived.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfubk",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Bank Identification Number Code. A unique identifier assigned to a bank, used for financial transactions and account management purposes globally.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfubr",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Branch Identifier Number. The branch number is a unique identifier for a specific bank branch within a financial institution's network, used for account management and transaction processing purposes. It helps in organizing and routing transactions to the correct branch.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfana1",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Account Name Identifier. The account name is a unique identifier for an account, used for customer identification and account management purposes in the banking system.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfana2",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Secondary Account Name. Account name 2 is a secondary name associated with an account, used for identification and record-keeping purposes in the banking system.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfaana",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Account Additional Name or Alternate Account Name. Account additional name is a supplementary name associated with a primary account, used for identification purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfswft",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "SWIFT Address for International Transactions. A unique identifier used for financial transactions, specifically the SWIFT address associated with a customer's account, facilitating secure and efficient transfer of funds across international borders.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "officr",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Account Officer or Relationship Manager or Account Manager. The person responsible for managing and overseeing a customer's account, providing support and guidance.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "aoficr",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Approved Officer or Department associated with the client's account. The person or department authorized to approve or oversee client accounts and transactions, ensuring compliance.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfuaid",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Account Reference Identifier. A unique identifier assigned to an account for reference and tracking purposes within the banking system.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfucfs",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Address Identification Number. The address CIF number is a unique identifier for a customer's address information, used for linking accounts and maintaining accurate customer data.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfuasq",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Address Sequence Number. The address sequence number is a unique identifier for an address, used for organizing and sorting addresses in a specific order, facilitating efficient location and delivery.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "clacod",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Account Classification Code. The account classification code that categorizes customer accounts based on specific criteria, facilitating account management and analysis.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "class",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Classification Code. Customer type code classification defining the type of customer, crucial for targeted services and relationship management.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfustf",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Staff Indicator Flag. A code indicating whether an account group staff is associated with a specific account or not, typically used for internal tracking and management purposes within the bank.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfurvc",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Product Rate Variance Inclusion Flag for Account Group Master Data. The account group file contains basic account details, including product rate variance flag indicating if product rate variance is included.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfckhm",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Direct Debit Checkbook Mail Indicator Code. The DD check book mail code is a unique identifier used for account verification and communication purposes, ensuring accurate and secure delivery of checkbooks to customers, and maintaining up-to-date account information.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfuatm",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Electronic Service Indicator Flag. The indicator that determines if an account allows electronic services, influencing service accessibility and customer interaction channels.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfmnor",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Minor Account Indicator Code. A code indicating whether an account is a minor account or not, used for account classification and management purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfukit",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Kiting Tracking Exclusion Flag. The Exclude Kiting Tracking indicator determines if an account is excluded from kiting tracking, preventing fraudulent transactions.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfumon",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Money Laundering Exclusion Indicator. The indicator to exclude a customer or account from money laundering tracking and reporting requirements.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfuwhc",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Federal Withholding Tax Code. A classification code used for federal tax withholding purposes, determining the rate of withholding tax applicable.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "sgncdn",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Account Signature Condition Code. The signature condition is a code that indicates the status of an account signature, determining its validity and usability for transactions and other banking operations, managed in the account group master file.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfopn6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Account Opening Date. The date on which the account was opened, serving as a key reference for account management and tracking.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfuld6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Last Transaction Date Field. The date of the most recent transaction conducted on the account, reflecting account activity status.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfucl6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Account Status Change Date. The date when the account status was last updated or modified, reflecting changes in account activity or standing.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfuri6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Account Reinstated Date. The reinstated date of an account, represented in the format DDMMYY, indicating the date when the account was reinstated.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfcmd6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Account Last Maintenance Date. The date when the account was last updated or maintained, reflecting changes to account information.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfagd6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Account Creation Date. The date when the account was created, stored in DD/MM/YY format for easy reference and record-keeping purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfagd7",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "description": "Account Group Creation Date. The date when the account was created, represented in a numerical format, specifically in YYYYDDD.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfopn7",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "description": "Account Opening Date. The date on which the account was opened, serving as a key reference for account management and tracking.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfuld7",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "description": "Last Transaction Date Field. The date of the most recent transaction associated with an account, reflecting account activity status.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfucl7",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "description": "Account Status Change Date. The date when the account status was last updated or changed, reflecting its current state.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfuri7",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "description": "Account Reinstated Date. The date when an account was reinstated, represented in a numerical format of year and day of the year.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfcmd7",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "description": "Account Last Maintenance Date. The date when the account was last updated or maintained, reflecting changes to account information.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfudac",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Disposal Account Number Identifier. Account number for disposal transactions, specifically for termination of accounts, linked to account groups.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfudty",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "TD Int Disposal Account Type Classification. Account type for int disposal, defining account's transaction restrictions and characteristics.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfutda",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Term Deposit Automatic Renewal Indicator. A flag indicating whether a time deposit account is set for automatic renewal upon maturity, determining if the account will be renewed automatically.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfutdd",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Transaction Disposition Code. The TD int disposition code represents the transaction disposition status, indicating the outcome of a transaction, such as success or failure, to facilitate tracking and analysis of transaction processing.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfgtim",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Last Account Group Maintenance Time. The timestamp when the account group information was last updated or modified in the system, reflecting changes made to account details.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfmuid",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Create User Identification Number. The identifier of the user who created the account group, storing information about account creation.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfmwid",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Create Workstation Identifier. The workstation name where the account was created, storing basic account details.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfcall",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Call Report Classification Code. Account grouping classification code used for reporting and analysis purposes in banking operations.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfaref",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Account Reference Number Identifier. Account reference number is a unique identifier assigned to an account for easy identification and tracking purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "cfuaty",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Customer Account Type Classification. Account type classification defining the nature of the account, crucial for banking operations and customer management.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "godstp",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Stop Overdraft Interest Accrual Flag. The stop OD int accrual flag indicates whether an account has stopped OD interest accrual, crucial for accurate interest calculations.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gswfts",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "SWIFT Statement Service Indicator. A flag indicating whether the account receives SWIFT statement services, used for account management and communication.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gcclas",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Collateral Classification Code. Collateral Classification refers to categorization of assets used as security for loans, determining their risk and value.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfcgty",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Checkbook Eligibility Flag. A flag indicating whether a checkbook is valid for a specific account, determining account status.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfcktp",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Check Book Type Indicator for Account Group. Account group check book type indicator, defining account's check book issuance and status, maintained in master file.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfcaut",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Auto Checkbook Service Indicator Flag. A flag indicating whether an account has an auto check book service, determining automatic issuance of checkbooks.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfcper",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Personalized Check Indicator Flag Value. A flag indicating whether a check is personalized or not, typically used for account verification purposes daily.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfatmc",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "ATM Card Indicator. A flag indicating whether an account has an ATM card linked to it, used for authentication and transaction purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfcmst",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Combined Statement Inclusion Flag. Account inclusion indicator for combined statements, determining if account appears together.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfprnt",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Print Statement On No Activity Flag. Account statement print setting, determining if statements are sent even with no account activity, for customer account groups.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfmhld",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Hold Mail Indicator Code. The hold mail code indicates whether an account holder has opted for mail correspondence or not, typically used for communication purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfacmt",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Account Interest Accrual Method Type. The account interest accrual method determines how interest is calculated and accrued for an account, affecting financial reporting and customer statements, based on predefined rules and schedules.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gftrac",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Daily Interest Accrual Tracking Flag. Account tracking indicator for daily interest accrual, indicating whether tracking is enabled or not, crucial for accurate interest calculations.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfalic",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Interest Back Valuation Flag. The account group's ability to allow interest back valuation, determining if it's enabled or not, impacting account management.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfswcg",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "SWIFT Charge Payer Indicator. A code indicating whether SWIFT charges are applicable to an account or transaction, determining fee structures.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gffecg",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Fee Charge Indicator. A code indicating whether a fee is charged or waived for a specific account or transaction type, typically used for account management and transaction processing purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfvlcg",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Transaction Volume Charge Indicator. A code used to identify the transaction volume charge applicable to an account, determining the charges incurred.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfansf",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Auto NSF Charge Flag. Automatic NSF (Non-Sufficient Funds) charge configuration for account group, determining fee application.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfhvol",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "High Volume Account Flag. A flag indicating whether an account has a high volume, typically used for special handling or monitoring purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "ginari",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Inactive Reminder Status Flag. The inactive reminder status of an account, indicating whether reminders are sent to the account holder.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gexari",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Excess Reminder Indicator Status. The Excess reminder status indicates if an account has excess funds or overdraft facilities utilized beyond limits set.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfpchk",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Print Interest Check Flag for Account Statements. The Print interest check flag determines whether interest is printed on account statements and related documents.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfscty",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Service Charge Application Mode. The Service charge mode defines how charges are applied to an account, determining the rules and conditions.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gnplfl",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Auto Maintain NPL Status Flag for Loan Accounts. The GNPLFL column tracks if an account's Non-Performing Loan (NPL) status is automatically maintained, indicating its loan repayment performance.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gnplst",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Non Performing Loan Status Indicator. The Nonperforming (NPL) status of an account, indicating if it's performing or not, is crucial for risk assessment.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gstpas",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Statement Passbook Code Identifier. The statement/passbook code is a unique identifier used to categorize and manage account statements.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gsecur",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Sensitive Account Indicator Flag. A flag indicating whether an account is sensitive or not, typically used for security and access control purposes in banking systems, helping to protect sensitive customer information.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gclsin",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Account Group Closure Indicator. A code indicating whether an account is closed or not, used for account status tracking and management purposes in the banking system.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfuic1",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "User Defined Code One. A unique identifier assigned to a customer or account group for internal tracking and management purposes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfuic2",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "User Defined Code 2 for Account Group Classification. A user-defined code used to categorize or identify specific account groups, enhancing data analysis and reporting capabilities.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfuic3",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "User Defined Account Classification Code. A unique identifier used to categorize or classify accounts within the account group, facilitating easy identification.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfuic4",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "User Defined Code Four for Account Classification. A user-defined code used to categorize or classify accounts, providing additional information for account management and analysis purposes within the financial institution.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gsplan",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Savings Plan Code Identifier. The Savings Plan Code is a unique identifier assigned to a specific savings plan offered by the bank, defining its characteristics and features for account management and customer interactions.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfuser",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "User Identification Code. The user code associated with an account, typically used for identification and access control purposes within the banking system, enabling secure and efficient management of customer accounts.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gstcyc",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Statement Cycle Frequency. A unique identifier assigned to a customer's statement cycle, determining the frequency and timing of their account statements.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gincyc",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Interest Cycle Frequency. The frequency at which interest is calculated and accrued for an account group, typically defined in days or months, affecting financial reporting and account management.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gsccyc",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Service Charge Application Cycle Frequency. A unique identifier assigned to a service charge cycle, determining the frequency of service charges applied to an account.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gswcyc",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Service Charge Waiver Cycle Count. The number of cycles to waive service charges for an account, determining fee exemptions.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfbcki",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Bad Check Incident Count. A code indicating if a customer has a history of bad checks, used for risk assessment and account management purposes in banking.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfrgp1",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Miscellaneous Group Code One. A code used to categorize and group accounts based on specific criteria or characteristics for reporting.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfrgp2",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Miscellaneous Group Classification Code 2. A code used to categorize and classify account groups for efficient management and reporting, enabling targeted services.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gdpcur",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Disposal Currency Code. The Disposal CCY code represents the currency in which an account or transaction is disposed, crucial for accurate financial reporting and compliance.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gpvar",
+            "type": "decimal",
+            "sourceType": "NUMERIC",
+            "description": "Account Rate Variance Value. The rate variance of an account, representing the difference between the actual and expected interest rates applied.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gpvar1",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Rate Variance Code Description for Account Group Master Data. Account Group file contains basic account details such as Account Name, status, and address linkage, Rate Variance Code.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gopvar",
+            "type": "decimal",
+            "sourceType": "NUMERIC",
+            "description": "Excess Rate Variance Value. Excess rate variance refers to the difference between expected and actual interest rate values, impacting financial performance.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gopvr1",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "description": "Excess Rate Variance Code. The Excess Rate Var Code represents a specific variable code used to determine excess rate calculations for account groups, influencing financial reporting and analysis. It plays a crucial role in managing account details and configurations within the banking system, ensuring accurate financial assessments and compliance with regulatory requirements.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfclmt",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Check Book Request Limit Threshold. The maximum number of check book requests allowed for an account, defining a threshold for account management and check issuance.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfcuus",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Number of Unused Checks. The number of checks that have not been used by the account holder, indicating remaining checkbook stock.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gexdt6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Date of First Excess. The date when the account first reached its excess limit, marking a significant event in account management.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfktd6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Last Kiting Incident Date. The date of the last kiting incident related to an account, used for risk assessment and account monitoring purposes always.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gridt6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Inactive Account Reminder Date. The date when the last inactive reminder notification was sent to the account holder, marking a key milestone in account activity tracking and customer engagement efforts.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gredt6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Last Excess Reminder Date. The date when the last excess reminder notification was sent to the customer regarding account overlimit or excess usage, serving as a reference for follow-up actions and communication.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gnpjd6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Judgement Date against an Account. The date on which a judgement was made regarding an account group, indicating a critical event or decision.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfdod6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Account Last Overdrawn Date. The date when the account was last overdrawn, indicating a negative balance, typically used for risk assessment.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfstm6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Date of the most recent account statement generated. The date on which the last statement was generated for the account, reflecting account activity.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gffap6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Facility Approval Date. The date and time when the facility was approved, marking the commencement of the account's active status, crucial for account management and transaction processing.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfort6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Date of Last Outward Transaction Return. The date on which the last outward return transaction was processed for an account, indicating recent account activity.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfw1d6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Date of First Warning Letter Issued. The date on which the first warning letter was sent for an account group, indicating initial notification of issues or concerns, triggering further review or action.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfwcd6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Account Closure Notification Date. The date on which a formal letter was sent to the customer regarding account closure, marking a key milestone in the account termination process.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gffdp6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Date of Initial Deposit. The date on which the initial deposit was made into the account, marking the account's activation date.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfldp6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Date of Last Deposit. The date on which the last deposit transaction was made into the account, reflecting recent account activity.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gflwd6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Date of Last Withdrawal Transaction. The date on which the last withdrawal transaction was made from a customer's account, reflecting account activity.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfscw6",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Standing Instruction Waive Expiration Date. The date when the S/C (Special Condition) waiver for an account group expires, marking a key milestone in account management and review processes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gexdt7",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "- Business Definition: The date when an account first exceeded its predefined limit, indicating a potential risk or overextension. This information is crucial for monitoring and managing account health and is used for further analysis or action. The date when the account first reached its excess limit, marking a significant event in account management.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfktd7",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Date of Last Kiting Incident. The date on which the last kiting incident occurred for an account, indicating potential fraudulent activity.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gridt7",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Date of Last Inactivity Reminder Sent to Customers. The date when the last reminder for account inactivity was sent to the customer, tracking customer account engagement and potential dormancy.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gredt7",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Date of Last Excess Reminder Sent. The date when the last excess reminder notification was sent to the customer regarding account overlimit or excess usage, serving as a reference for follow-up actions.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gnpjd7",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Judgement Date against an Account. The date on which a judgement was made regarding an account group, indicating a critical event or decision.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfdod7",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Date Last Overdrawn. The date when the account was last overdrawn, indicating a negative balance, typically used for risk assessment.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfstm7",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Date of Last Statement Issued. The date on which the last statement was generated for the account, reflecting account activity.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gffap7",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Facility Approval Date. The date and time when the facility approval was granted for an account, marking a key milestone.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfort7",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Last Outward Return Transaction Date. The date when the last outward return was made for an account, reflecting its recent activity status.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfw1d7",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "First Warning Letter Date. The date on which the first warning letter was sent for an account group, indicating initial notification of issues.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfwcd7",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Account Closure Notification Date. The date on which a formal letter was sent to the customer regarding account closure, marking a key milestone in the account termination process.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gffdp7",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Date of Initial Deposit. The date on which the first deposit was made into an account, marking the account's activation date.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfldp7",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Date of Last Deposit. The date on which the last deposit transaction was made into the account, reflecting recent account activity.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gflwd7",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Last Withdrawal Date. The date on which the last withdrawal transaction was made from a customer's account, reflecting account activity.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "gfscw7",
+            "type": "long",
+            "sourceType": "BIGINT",
+            "description": "Service Charge Waiver Expiry Date. The date when the S/C (Special Condition) waiver for an account group expires, marking a key milestone in account management and review processes.",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "proc_instance_id",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "proc_ts",
+            "type": "timestamp",
+            "sourceType": "TIMESTAMP",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "site_id",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          },
+          {
+            "columnName": "biz_dt",
+            "type": "text",
+            "sourceType": "NVARCHAR",
+            "tags": [],
+            "primaryKey": false,
+            "nullable": true,
+            "sample_data": []
+          }
+        ],
+        "tagDetails": [
+          {
+            "name": "base_tables"
+          }
+        ],
+        "associations": []
+      },
+      "view_text": "=====Table admin.bv_sf_eda_bwc_cfagrp_d_sg=====\nDescription: Source System: BWC, View Type: Master, Key Description: Account Group file. Parent file for Accounts. It keeps the basic account details eg Account Name, status, address linkage\nColumns:\n- cfcif (long) -> Customer Identification File Identifier. A unique identifier assigned to a customer by the bank for identification and record-keeping purposes, used across various banking systems..\n- cfagno (long) -> Account Group Identifier. A unique identifier assigned to a group of accounts, used for categorization and management purposes within the banking system, enabling efficient account grouping and retrieval..\n- cfagty (text) -> Account Group Type Classification. The account group type defines the category of account groups used for customer accounts, enabling effective account management..\n- ddbook (text) -> Account Book Code Classification. The account book code indicating whether an account belongs to a specific banking division or unit..\n- ddcost (long) -> Cost Center Identifier. Cost center is a specific department or unit within an organization that incurs costs, used for financial tracking and management purposes..\n- dgroup (long) -> Product Group Code For Customer Account Classification. The product group code or customer account type that categorizes accounts for management and reporting purposes within the bank's system, enabling effective account grouping and analysis..\n- cfagtc (text) -> Account Product Type Classification. Account product type description is a classification of account products offered by the bank to its customers, defining characteristics and features..\n- cfagrl (text) -> Account Group Relationship Type Code. The account group relationship type defines various relationships allowed for an account group in the banking system..\n- cfusts (long) -> Account Status Code. The status of an account, indicating its current state, such as active, inactive, or frozen, used for account management and transaction processing purposes..\n- cfpsts (long) -> Account Prior Status Code. The prior status of an account, indicating its previous state or condition, used for tracking changes..\n- cfagrt (long) -> Account Group Retention Period. The retention period assigned to an account group, determining how long account information is kept active or archived..\n- cfubk (long) -> Bank Identification Number Code. A unique identifier assigned to a bank, used for financial transactions and account management purposes globally..\n- cfubr (long) -> Branch Identifier Number. The branch number is a unique identifier for a specific bank branch within a financial institution's network, used for account management and transaction processing purposes. It helps in organizing and routing transactions to the correct branch..\n- cfana1 (text) -> Account Name Identifier. The account name is a unique identifier for an account, used for customer identification and account management purposes in the banking system..\n- cfana2 (text) -> Secondary Account Name. Account name 2 is a secondary name associated with an account, used for identification and record-keeping purposes in the banking system..\n- cfaana (text) -> Account Additional Name or Alternate Account Name. Account additional name is a supplementary name associated with a primary account, used for identification purposes..\n- cfswft (text) -> SWIFT Address for International Transactions. A unique identifier used for financial transactions, specifically the SWIFT address associated with a customer's account, facilitating secure and efficient transfer of funds across international borders..\n- officr (text) -> Customer Account Officer or Relationship Manager or Account Manager. The person responsible for managing and overseeing a customer's account, providing support and guidance..\n- aoficr (text) -> Approved Officer or Department associated with the client's account. The person or department authorized to approve or oversee client accounts and transactions, ensuring compliance..\n- cfuaid (long) -> Account Reference Identifier. A unique identifier assigned to an account for reference and tracking purposes within the banking system..\n- cfucfs (long) -> Address Identification Number. The address CIF number is a unique identifier for a customer's address information, used for linking accounts and maintaining accurate customer data..\n- cfuasq (long) -> Address Sequence Number. The address sequence number is a unique identifier for an address, used for organizing and sorting addresses in a specific order, facilitating efficient location and delivery..\n- clacod (text) -> Customer Account Classification Code. The account classification code that categorizes customer accounts based on specific criteria, facilitating account management and analysis..\n- class (text) -> Customer Classification Code. Customer type code classification defining the type of customer, crucial for targeted services and relationship management..\n- cfustf (text) -> Staff Indicator Flag. A code indicating whether an account group staff is associated with a specific account or not, typically used for internal tracking and management purposes within the bank..\n- cfurvc (text) -> Product Rate Variance Inclusion Flag for Account Group Master Data. The account group file contains basic account details, including product rate variance flag indicating if product rate variance is included..\n- cfckhm (text) -> Direct Debit Checkbook Mail Indicator Code. The DD check book mail code is a unique identifier used for account verification and communication purposes, ensuring accurate and secure delivery of checkbooks to customers, and maintaining up-to-date account information..\n- cfuatm (text) -> Electronic Service Indicator Flag. The indicator that determines if an account allows electronic services, influencing service accessibility and customer interaction channels..\n- cfmnor (text) -> Minor Account Indicator Code. A code indicating whether an account is a minor account or not, used for account classification and management purposes..\n- cfukit (text) -> Kiting Tracking Exclusion Flag. The Exclude Kiting Tracking indicator determines if an account is excluded from kiting tracking, preventing fraudulent transactions..\n- cfumon (text) -> Money Laundering Exclusion Indicator. The indicator to exclude a customer or account from money laundering tracking and reporting requirements..\n- cfuwhc (long) -> Federal Withholding Tax Code. A classification code used for federal tax withholding purposes, determining the rate of withholding tax applicable..\n- sgncdn (long) -> Account Signature Condition Code. The signature condition is a code that indicates the status of an account signature, determining its validity and usability for transactions and other banking operations, managed in the account group master file..\n- cfopn6 (long) -> Account Opening Date. The date on which the account was opened, serving as a key reference for account management and tracking..\n- cfuld6 (long) -> Last Transaction Date Field. The date of the most recent transaction conducted on the account, reflecting account activity status..\n- cfucl6 (long) -> Account Status Change Date. The date when the account status was last updated or modified, reflecting changes in account activity or standing..\n- cfuri6 (long) -> Account Reinstated Date. The reinstated date of an account, represented in the format DDMMYY, indicating the date when the account was reinstated..\n- cfcmd6 (long) -> Account Last Maintenance Date. The date when the account was last updated or maintained, reflecting changes to account information..\n- cfagd6 (long) -> Account Creation Date. The date when the account was created, stored in DD/MM/YY format for easy reference and record-keeping purposes..\n- cfagd7 (timestamp) -> Account Group Creation Date. The date when the account was created, represented in a numerical format, specifically in YYYYDDD..\n- cfopn7 (timestamp) -> Account Opening Date. The date on which the account was opened, serving as a key reference for account management and tracking..\n- cfuld7 (timestamp) -> Last Transaction Date Field. The date of the most recent transaction associated with an account, reflecting account activity status..\n- cfucl7 (timestamp) -> Account Status Change Date. The date when the account status was last updated or changed, reflecting its current state..\n- cfuri7 (timestamp) -> Account Reinstated Date. The date when an account was reinstated, represented in a numerical format of year and day of the year..\n- cfcmd7 (timestamp) -> Account Last Maintenance Date. The date when the account was last updated or maintained, reflecting changes to account information..\n- cfudac (long) -> Disposal Account Number Identifier. Account number for disposal transactions, specifically for termination of accounts, linked to account groups..\n- cfudty (text) -> TD Int Disposal Account Type Classification. Account type for int disposal, defining account's transaction restrictions and characteristics..\n- cfutda (text) -> Term Deposit Automatic Renewal Indicator. A flag indicating whether a time deposit account is set for automatic renewal upon maturity, determining if the account will be renewed automatically..\n- cfutdd (text) -> Transaction Disposition Code. The TD int disposition code represents the transaction disposition status, indicating the outcome of a transaction, such as success or failure, to facilitate tracking and analysis of transaction processing..\n- cfgtim (long) -> Last Account Group Maintenance Time. The timestamp when the account group information was last updated or modified in the system, reflecting changes made to account details..\n- cfmuid (text) -> Create User Identification Number. The identifier of the user who created the account group, storing information about account creation..\n- cfmwid (text) -> Create Workstation Identifier. The workstation name where the account was created, storing basic account details..\n- cfcall (text) -> Call Report Classification Code. Account grouping classification code used for reporting and analysis purposes in banking operations..\n- cfaref (text) -> Customer Account Reference Number Identifier. Account reference number is a unique identifier assigned to an account for easy identification and tracking purposes..\n- cfuaty (text) -> Customer Account Type Classification. Account type classification defining the nature of the account, crucial for banking operations and customer management..\n- godstp (text) -> Stop Overdraft Interest Accrual Flag. The stop OD int accrual flag indicates whether an account has stopped OD interest accrual, crucial for accurate interest calculations..\n- gswfts (text) -> SWIFT Statement Service Indicator. A flag indicating whether the account receives SWIFT statement services, used for account management and communication..\n- gcclas (text) -> Collateral Classification Code. Collateral Classification refers to categorization of assets used as security for loans, determining their risk and value..\n- gfcgty (text) -> Checkbook Eligibility Flag. A flag indicating whether a checkbook is valid for a specific account, determining account status..\n- gfcktp (text) -> Check Book Type Indicator for Account Group. Account group check book type indicator, defining account's check book issuance and status, maintained in master file..\n- gfcaut (text) -> Auto Checkbook Service Indicator Flag. A flag indicating whether an account has an auto check book service, determining automatic issuance of checkbooks..\n- gfcper (text) -> Personalized Check Indicator Flag Value. A flag indicating whether a check is personalized or not, typically used for account verification purposes daily..\n- gfatmc (text) -> ATM Card Indicator. A flag indicating whether an account has an ATM card linked to it, used for authentication and transaction purposes..\n- gfcmst (text) -> Combined Statement Inclusion Flag. Account inclusion indicator for combined statements, determining if account appears together..\n- gfprnt (text) -> Print Statement On No Activity Flag. Account statement print setting, determining if statements are sent even with no account activity, for customer account groups..\n- gfmhld (text) -> Hold Mail Indicator Code. The hold mail code indicates whether an account holder has opted for mail correspondence or not, typically used for communication purposes..\n- gfacmt (text) -> Account Interest Accrual Method Type. The account interest accrual method determines how interest is calculated and accrued for an account, affecting financial reporting and customer statements, based on predefined rules and schedules..\n- gftrac (text) -> Daily Interest Accrual Tracking Flag. Account tracking indicator for daily interest accrual, indicating whether tracking is enabled or not, crucial for accurate interest calculations..\n- gfalic (text) -> Interest Back Valuation Flag. The account group's ability to allow interest back valuation, determining if it's enabled or not, impacting account management..\n- gfswcg (text) -> SWIFT Charge Payer Indicator. A code indicating whether SWIFT charges are applicable to an account or transaction, determining fee structures..\n- gffecg (text) -> Fee Charge Indicator. A code indicating whether a fee is charged or waived for a specific account or transaction type, typically used for account management and transaction processing purposes..\n- gfvlcg (text) -> Transaction Volume Charge Indicator. A code used to identify the transaction volume charge applicable to an account, determining the charges incurred..\n- gfansf (text) -> Auto NSF Charge Flag. Automatic NSF (Non-Sufficient Funds) charge configuration for account group, determining fee application..\n- gfhvol (text) -> High Volume Account Flag. A flag indicating whether an account has a high volume, typically used for special handling or monitoring purposes..\n- ginari (text) -> Inactive Reminder Status Flag. The inactive reminder status of an account, indicating whether reminders are sent to the account holder..\n- gexari (text) -> Excess Reminder Indicator Status. The Excess reminder status indicates if an account has excess funds or overdraft facilities utilized beyond limits set..\n- gfpchk (text) -> Print Interest Check Flag for Account Statements. The Print interest check flag determines whether interest is printed on account statements and related documents..\n- gfscty (text) -> Service Charge Application Mode. The Service charge mode defines how charges are applied to an account, determining the rules and conditions..\n- gnplfl (text) -> Auto Maintain NPL Status Flag for Loan Accounts. The GNPLFL column tracks if an account's Non-Performing Loan (NPL) status is automatically maintained, indicating its loan repayment performance..\n- gnplst (text) -> Non Performing Loan Status Indicator. The Nonperforming (NPL) status of an account, indicating if it's performing or not, is crucial for risk assessment..\n- gstpas (text) -> Statement Passbook Code Identifier. The statement/passbook code is a unique identifier used to categorize and manage account statements..\n- gsecur (text) -> Sensitive Account Indicator Flag. A flag indicating whether an account is sensitive or not, typically used for security and access control purposes in banking systems, helping to protect sensitive customer information..\n- gclsin (text) -> Account Group Closure Indicator. A code indicating whether an account is closed or not, used for account status tracking and management purposes in the banking system..\n- gfuic1 (text) -> User Defined Code One. A unique identifier assigned to a customer or account group for internal tracking and management purposes..\n- gfuic2 (text) -> User Defined Code 2 for Account Group Classification. A user-defined code used to categorize or identify specific account groups, enhancing data analysis and reporting capabilities..\n- gfuic3 (text) -> User Defined Account Classification Code. A unique identifier used to categorize or classify accounts within the account group, facilitating easy identification..\n- gfuic4 (text) -> User Defined Code Four for Account Classification. A user-defined code used to categorize or classify accounts, providing additional information for account management and analysis purposes within the financial institution..\n- gsplan (text) -> Savings Plan Code Identifier. The Savings Plan Code is a unique identifier assigned to a specific savings plan offered by the bank, defining its characteristics and features for account management and customer interactions..\n- gfuser (text) -> User Identification Code. The user code associated with an account, typically used for identification and access control purposes within the banking system, enabling secure and efficient management of customer accounts..\n- gstcyc (long) -> Statement Cycle Frequency. A unique identifier assigned to a customer's statement cycle, determining the frequency and timing of their account statements..\n- gincyc (long) -> Interest Cycle Frequency. The frequency at which interest is calculated and accrued for an account group, typically defined in days or months, affecting financial reporting and account management..\n- gsccyc (long) -> Service Charge Application Cycle Frequency. A unique identifier assigned to a service charge cycle, determining the frequency of service charges applied to an account..\n- gswcyc (long) -> Service Charge Waiver Cycle Count. The number of cycles to waive service charges for an account, determining fee exemptions..\n- gfbcki (long) -> Bad Check Incident Count. A code indicating if a customer has a history of bad checks, used for risk assessment and account management purposes in banking..\n- gfrgp1 (text) -> Miscellaneous Group Code One. A code used to categorize and group accounts based on specific criteria or characteristics for reporting..\n- gfrgp2 (text) -> Miscellaneous Group Classification Code 2. A code used to categorize and classify account groups for efficient management and reporting, enabling targeted services..\n- gdpcur (text) -> Disposal Currency Code. The Disposal CCY code represents the currency in which an account or transaction is disposed, crucial for accurate financial reporting and compliance..\n- gpvar (decimal) -> Account Rate Variance Value. The rate variance of an account, representing the difference between the actual and expected interest rates applied..\n- gpvar1 (text) -> Rate Variance Code Description for Account Group Master Data. Account Group file contains basic account details such as Account Name, status, and address linkage, Rate Variance Code..\n- gopvar (decimal) -> Excess Rate Variance Value. Excess rate variance refers to the difference between expected and actual interest rate values, impacting financial performance..\n- gopvr1 (text) -> Excess Rate Variance Code. The Excess Rate Var Code represents a specific variable code used to determine excess rate calculations for account groups, influencing financial reporting and analysis. It plays a crucial role in managing account details and configurations within the banking system, ensuring accurate financial assessments and compliance with regulatory requirements..\n- gfclmt (long) -> Check Book Request Limit Threshold. The maximum number of check book requests allowed for an account, defining a threshold for account management and check issuance..\n- gfcuus (long) -> Number of Unused Checks. The number of checks that have not been used by the account holder, indicating remaining checkbook stock..\n- gexdt6 (long) -> Date of First Excess. The date when the account first reached its excess limit, marking a significant event in account management..\n- gfktd6 (long) -> Last Kiting Incident Date. The date of the last kiting incident related to an account, used for risk assessment and account monitoring purposes always..\n- gridt6 (long) -> Inactive Account Reminder Date. The date when the last inactive reminder notification was sent to the account holder, marking a key milestone in account activity tracking and customer engagement efforts..\n- gredt6 (long) -> Last Excess Reminder Date. The date when the last excess reminder notification was sent to the customer regarding account overlimit or excess usage, serving as a reference for follow-up actions and communication..\n- gnpjd6 (long) -> Judgement Date against an Account. The date on which a judgement was made regarding an account group, indicating a critical event or decision..\n- gfdod6 (long) -> Account Last Overdrawn Date. The date when the account was last overdrawn, indicating a negative balance, typically used for risk assessment..\n- gfstm6 (long) -> Date of the most recent account statement generated. The date on which the last statement was generated for the account, reflecting account activity..\n- gffap6 (long) -> Facility Approval Date. The date and time when the facility was approved, marking the commencement of the account's active status, crucial for account management and transaction processing..\n- gfort6 (long) -> Date of Last Outward Transaction Return. The date on which the last outward return transaction was processed for an account, indicating recent account activity..\n- gfw1d6 (long) -> Date of First Warning Letter Issued. The date on which the first warning letter was sent for an account group, indicating initial notification of issues or concerns, triggering further review or action..\n- gfwcd6 (long) -> Account Closure Notification Date. The date on which a formal letter was sent to the customer regarding account closure, marking a key milestone in the account termination process..\n- gffdp6 (long) -> Date of Initial Deposit. The date on which the initial deposit was made into the account, marking the account's activation date..\n- gfldp6 (long) -> Date of Last Deposit. The date on which the last deposit transaction was made into the account, reflecting recent account activity..\n- gflwd6 (long) -> Date of Last Withdrawal Transaction. The date on which the last withdrawal transaction was made from a customer's account, reflecting account activity..\n- gfscw6 (long) -> Standing Instruction Waive Expiration Date. The date when the S/C (Special Condition) waiver for an account group expires, marking a key milestone in account management and review processes..\n- gexdt7 (long) -> - Business Definition: The date when an account first exceeded its predefined limit, indicating a potential risk or overextension. This information is crucial for monitoring and managing account health and is used for further analysis or action. The date when the account first reached its excess limit, marking a significant event in account management..\n- gfktd7 (long) -> Date of Last Kiting Incident. The date on which the last kiting incident occurred for an account, indicating potential fraudulent activity..\n- gridt7 (long) -> Date of Last Inactivity Reminder Sent to Customers. The date when the last reminder for account inactivity was sent to the customer, tracking customer account engagement and potential dormancy..\n- gredt7 (long) -> Date of Last Excess Reminder Sent. The date when the last excess reminder notification was sent to the customer regarding account overlimit or excess usage, serving as a reference for follow-up actions..\n- gnpjd7 (long) -> Judgement Date against an Account. The date on which a judgement was made regarding an account group, indicating a critical event or decision..\n- gfdod7 (long) -> Date Last Overdrawn. The date when the account was last overdrawn, indicating a negative balance, typically used for risk assessment..\n- gfstm7 (long) -> Date of Last Statement Issued. The date on which the last statement was generated for the account, reflecting account activity..\n- gffap7 (long) -> Facility Approval Date. The date and time when the facility approval was granted for an account, marking a key milestone..\n- gfort7 (long) -> Last Outward Return Transaction Date. The date when the last outward return was made for an account, reflecting its recent activity status..\n- gfw1d7 (long) -> First Warning Letter Date. The date on which the first warning letter was sent for an account group, indicating initial notification of issues..\n- gfwcd7 (long) -> Account Closure Notification Date. The date on which a formal letter was sent to the customer regarding account closure, marking a key milestone in the account termination process..\n- gffdp7 (long) -> Date of Initial Deposit. The date on which the first deposit was made into an account, marking the account's activation date..\n- gfldp7 (long) -> Date of Last Deposit. The date on which the last deposit transaction was made into the account, reflecting recent account activity..\n- gflwd7 (long) -> Last Withdrawal Date. The date on which the last withdrawal transaction was made from a customer's account, reflecting account activity..\n- gfscw7 (long) -> Service Charge Waiver Expiry Date. The date when the S/C (Special Condition) waiver for an account group expires, marking a key milestone in account management and review processes..\n- proc_instance_id (text)\n- proc_ts (timestamp)\n- site_id (text)\n- biz_dt (text)\n\n",
+      "database_name": "admin",
+      "tag_base_tables": "1"
+    }
+  ]
+}
