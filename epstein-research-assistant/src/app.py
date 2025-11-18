@@ -32,6 +32,7 @@ def initialize_session_state():
         st.session_state.source_mapping = {}
         st.session_state.upload_complete = False
         st.session_state.chat_history = []
+        st.session_state.store_connected = False  # Track if connected to existing store
 
 
 def setup_sidebar():
@@ -92,13 +93,37 @@ def setup_sidebar():
         # Upload section
         st.subheader("📤 Upload Status")
 
-        if st.session_state.upload_complete:
-            st.success("✅ Documents uploaded to Gemini")
+        if st.session_state.store_connected or st.session_state.upload_complete:
+            st.success("✅ Store ready for queries")
             if st.session_state.file_search_manager:
                 info = st.session_state.file_search_manager.get_store_info()
-                st.write(f"Store: {info.get('display_name', 'N/A')}")
+                st.write(f"**Store**: {info.get('display_name', 'N/A')}")
+                if info.get('uploaded_count', 0) > 0:
+                    st.write(f"**Documents**: {info['uploaded_count']}")
         else:
-            st.info("ℹ️ Documents not yet uploaded")
+            st.info("ℹ️ No store connected yet")
+
+        st.markdown("---")
+
+        # Quick Actions
+        st.subheader("⚡ Quick Actions")
+
+        # Connect to existing store button
+        if st.button("🔗 Connect to Existing Store"):
+            with st.spinner("Connecting to File Search store..."):
+                try:
+                    from file_search_manager import FileSearchManager
+                    manager = FileSearchManager(
+                        api_key=Config.get_gemini_api_key(),
+                        store_name=Config.FILE_SEARCH_STORE_NAME
+                    )
+                    manager.create_or_get_store()
+                    st.session_state.file_search_manager = manager
+                    st.session_state.store_connected = True
+                    st.success("✅ Connected to existing store!")
+                    st.rerun()
+                except Exception as e:
+                    st.error(f"Error: {str(e)}")
 
         st.markdown("---")
 
@@ -230,10 +255,32 @@ def upload_to_gemini():
 
 def query_interface():
     """Query interface for asking questions"""
-    st.header("💬 Step 3: Ask Questions")
+    st.header("💬 Ask Questions")
 
-    if not st.session_state.upload_complete:
-        st.warning("⚠️ Please upload documents first")
+    # Check if store is ready (either connected or uploaded)
+    if not st.session_state.store_connected and not st.session_state.upload_complete:
+        st.warning("⚠️ Please either upload documents OR connect to an existing store")
+
+        # Show connect button
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("🔗 Connect to Existing Store", key="query_connect"):
+                with st.spinner("Connecting..."):
+                    try:
+                        from file_search_manager import FileSearchManager
+                        manager = FileSearchManager(
+                            api_key=Config.get_gemini_api_key(),
+                            store_name=Config.FILE_SEARCH_STORE_NAME
+                        )
+                        manager.create_or_get_store()
+                        st.session_state.file_search_manager = manager
+                        st.session_state.store_connected = True
+                        st.success("✅ Connected!")
+                        st.rerun()
+                    except Exception as e:
+                        st.error(f"Error: {str(e)}")
+        with col2:
+            st.info("OR upload new documents in Step 2 →")
         return
 
     # Initialize query engine
@@ -335,21 +382,62 @@ def main():
     # Setup sidebar
     setup_sidebar()
 
-    # Main workflow
-    st.markdown("---")
+    # Main content - Use tabs for better UX
+    tab1, tab2, tab3 = st.tabs(["💬 Ask Questions", "📊 Upload Documents", "📁 Manage Data"])
 
-    # Step 1: Load data
-    data_loaded = load_and_process_data()
+    with tab1:
+        # Query interface - available immediately
+        query_interface()
 
-    if data_loaded:
+    with tab2:
         st.markdown("---")
-        # Step 2: Upload
-        upload_complete = upload_to_gemini()
+        # Step 1: Load data
+        st.header("📁 Step 1: Load Dataset")
+        data_loaded = load_and_process_data()
 
-        if upload_complete or st.session_state.upload_complete:
+        if data_loaded:
             st.markdown("---")
-            # Step 3: Query
-            query_interface()
+            # Step 2: Upload
+            st.header("📤 Step 2: Upload to Gemini")
+            upload_to_gemini()
+
+    with tab3:
+        st.header("📂 Data Management")
+
+        # CSV info
+        if os.path.exists(Config.DATASET_PATH):
+            st.success(f"✅ CSV found: {Config.DATASET_PATH}")
+            import pandas as pd
+            df = pd.read_csv(Config.DATASET_PATH, nrows=5)
+            st.write(f"**Columns**: {list(df.columns)}")
+            st.write(f"**Sample data** (first row):")
+            st.dataframe(df.head(1))
+
+        # Store info
+        st.markdown("---")
+        st.subheader("🗄️ File Search Store")
+
+        if st.session_state.file_search_manager:
+            info = st.session_state.file_search_manager.get_store_info()
+            st.json(info)
+        else:
+            st.info("Not connected to any store yet")
+
+            if st.button("🔗 Connect Now"):
+                with st.spinner("Connecting..."):
+                    try:
+                        from file_search_manager import FileSearchManager
+                        manager = FileSearchManager(
+                            api_key=Config.get_gemini_api_key(),
+                            store_name=Config.FILE_SEARCH_STORE_NAME
+                        )
+                        manager.create_or_get_store()
+                        st.session_state.file_search_manager = manager
+                        st.session_state.store_connected = True
+                        st.success("✅ Connected!")
+                        st.rerun()
+                    except Exception as e:
+                        st.error(f"Error: {str(e)}")
 
 
 if __name__ == "__main__":
