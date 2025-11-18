@@ -113,10 +113,17 @@ class FileSearchManager:
                 elapsed += poll_interval
                 # Refresh operation status
                 if hasattr(operation, 'name'):
-                    operation = self.client.operations.get(operation.name)
+                    refreshed_op = self.client.operations.get(operation.name)
+                    # Check if the refreshed operation is a string and convert if needed
+                    if isinstance(refreshed_op, str):
+                        refreshed_op = self.client.operations.get(refreshed_op)
+                    operation = refreshed_op
                 else:
                     # If no name attribute, try to get it as string
-                    operation = self.client.operations.get(str(operation))
+                    refreshed_op = self.client.operations.get(str(operation))
+                    if isinstance(refreshed_op, str):
+                        refreshed_op = self.client.operations.get(refreshed_op)
+                    operation = refreshed_op
 
             if operation.done:
                 # Store metadata locally for later use (not sent to Gemini API)
