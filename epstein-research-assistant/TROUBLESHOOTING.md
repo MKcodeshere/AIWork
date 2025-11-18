@@ -119,6 +119,25 @@ The CSV processor tries multiple encodings automatically (utf-8, latin-1, iso-88
 
 ## Runtime Errors
 
+### Error: Metadata validation error during upload
+
+**Symptom:**
+```
+Upload failed: 1 validation error for UploadToFileSearchStoreConfig
+metadata
+  Extra inputs are not permitted [type=extra_forbidden]
+```
+
+**Solution:**
+✅ **FIXED** - Update to latest code:
+```bash
+git pull origin claude/process-epstein-ocr-dataset-01TfiEWCuLrrHjZD3h5Docca
+```
+
+The Gemini File Search API doesn't accept custom metadata fields. The code now stores metadata locally instead of sending it to the API.
+
+---
+
 ### Error: Upload timeout
 
 **Symptom:**
