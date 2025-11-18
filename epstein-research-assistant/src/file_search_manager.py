@@ -88,6 +88,11 @@ class FileSearchManager:
                 }
             )
 
+            # Check if operation is a string (operation ID) or object
+            if isinstance(operation, str):
+                # If it's a string, get the actual operation object
+                operation = self.client.operations.get(operation)
+
             # Poll until complete
             max_wait = 300  # 5 minutes
             elapsed = 0
@@ -96,7 +101,12 @@ class FileSearchManager:
             while not operation.done and elapsed < max_wait:
                 time.sleep(poll_interval)
                 elapsed += poll_interval
-                operation = self.client.operations.get(operation.name)
+                # Refresh operation status
+                if hasattr(operation, 'name'):
+                    operation = self.client.operations.get(operation.name)
+                else:
+                    # If no name attribute, try to get it as string
+                    operation = self.client.operations.get(str(operation))
 
             if operation.done:
                 # Store metadata locally for later use (not sent to Gemini API)
