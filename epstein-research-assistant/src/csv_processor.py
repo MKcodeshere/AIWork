@@ -6,7 +6,7 @@ import pandas as pd
 import os
 from typing import List, Dict, Tuple
 from tqdm import tqdm
-from .utils import clean_text, extract_metadata_from_path, create_document_id, parse_csv_columns
+from utils import clean_text, extract_metadata_from_path, create_document_id, parse_csv_columns
 
 
 class CSVProcessor:
