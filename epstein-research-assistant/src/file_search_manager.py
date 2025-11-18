@@ -103,27 +103,17 @@ class FileSearchManager:
                 if not hasattr(operation, 'done'):
                     return False, f"Invalid operation object returned (type: {type(operation)})"
 
-            # Poll until complete
+            # Poll until complete (following official Gemini API pattern)
             max_wait = 300  # 5 minutes
             elapsed = 0
-            poll_interval = 2
+            poll_interval = 5  # Official docs recommend 5 seconds
 
+            # The correct pattern from official docs: pass entire operation object to operations.get()
             while not operation.done and elapsed < max_wait:
                 time.sleep(poll_interval)
                 elapsed += poll_interval
-                # Refresh operation status
-                if hasattr(operation, 'name'):
-                    refreshed_op = self.client.operations.get(operation.name)
-                    # Check if the refreshed operation is a string and convert if needed
-                    if isinstance(refreshed_op, str):
-                        refreshed_op = self.client.operations.get(refreshed_op)
-                    operation = refreshed_op
-                else:
-                    # If no name attribute, try to get it as string
-                    refreshed_op = self.client.operations.get(str(operation))
-                    if isinstance(refreshed_op, str):
-                        refreshed_op = self.client.operations.get(refreshed_op)
-                    operation = refreshed_op
+                # Pass the entire operation object, not operation.name
+                operation = self.client.operations.get(operation)
 
             if operation.done:
                 # Store metadata locally for later use (not sent to Gemini API)
