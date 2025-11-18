@@ -68,7 +68,7 @@ class FileSearchManager:
         Args:
             file_path: Path to the file
             display_name: Display name for the file
-            metadata: Optional metadata dictionary
+            metadata: Optional metadata dictionary (stored locally, not sent to API)
 
         Returns:
             Tuple of (success, message)
@@ -78,12 +78,13 @@ class FileSearchManager:
 
         try:
             # Upload and import file
+            # Note: Gemini File Search doesn't support custom metadata in upload config
+            # We store metadata locally in self.uploaded_files instead
             operation = self.client.file_search_stores.upload_to_file_search_store(
                 file=file_path,
                 file_search_store_name=self.store.name,
                 config={
-                    'display_name': display_name,
-                    'metadata': metadata or {}
+                    'display_name': display_name
                 }
             )
 
@@ -98,9 +99,10 @@ class FileSearchManager:
                 operation = self.client.operations.get(operation.name)
 
             if operation.done:
+                # Store metadata locally for later use (not sent to Gemini API)
                 self.uploaded_files[display_name] = {
                     'file_path': file_path,
-                    'metadata': metadata,
+                    'metadata': metadata or {},
                     'status': 'completed'
                 }
                 return True, "Upload successful"
@@ -243,3 +245,30 @@ class FileSearchManager:
     def get_store(self):
         """Get the current store object"""
         return self.store
+
+    def get_metadata(self, display_name: str) -> Optional[Dict]:
+        """
+        Get metadata for an uploaded file
+
+        Args:
+            display_name: Display name of the file
+
+        Returns:
+            Metadata dictionary or None
+        """
+        file_info = self.uploaded_files.get(display_name)
+        if file_info:
+            return file_info.get('metadata')
+        return None
+
+    def get_all_metadata(self) -> Dict[str, Dict]:
+        """
+        Get all metadata for uploaded files
+
+        Returns:
+            Dictionary mapping display_name -> metadata
+        """
+        return {
+            name: info.get('metadata', {})
+            for name, info in self.uploaded_files.items()
+        }

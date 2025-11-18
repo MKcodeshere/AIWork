@@ -226,10 +226,21 @@ def query_interface():
 
     # Initialize query engine
     if not st.session_state.query_engine:
+        # Get metadata from file search manager for citations
+        metadata_mapping = {}
+        if st.session_state.file_search_manager:
+            all_metadata = st.session_state.file_search_manager.get_all_metadata()
+            # Create mapping from doc_id to source_path
+            for display_name, metadata in all_metadata.items():
+                doc_id = metadata.get('doc_id')
+                source_path = metadata.get('source_path')
+                if doc_id and source_path:
+                    metadata_mapping[doc_id] = source_path
+
         st.session_state.query_engine = QueryEngine(
             api_key=Config.get_api_key(),
             model_name=st.session_state.selected_model,
-            source_mapping=st.session_state.source_mapping
+            source_mapping=metadata_mapping
         )
 
     # Example questions
