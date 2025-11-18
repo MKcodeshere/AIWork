@@ -45,10 +45,10 @@ def clean_text(text: str) -> str:
 
 def extract_metadata_from_path(path: str) -> Dict[str, str]:
     """
-    Extract metadata from Google Drive path
+    Extract metadata from Google Drive path or filename
 
     Args:
-        path: Google Drive folder path
+        path: Google Drive folder path or filename
 
     Returns:
         Dictionary with extracted metadata
@@ -59,21 +59,32 @@ def extract_metadata_from_path(path: str) -> Dict[str, str]:
         'category': ''
     }
 
-    # Extract folder name (last part of path)
-    if '/' in path:
-        parts = path.split('/')
-        metadata['folder'] = parts[-1] if parts else ''
+    # Handle both forward slashes and backslashes
+    if '/' in path or '\\' in path:
+        # Normalize path separators
+        normalized_path = path.replace('\\', '/')
+        parts = normalized_path.split('/')
+        metadata['folder'] = parts[-2] if len(parts) > 1 else ''  # Get parent folder
 
-        # Try to identify category from path
-        path_lower = path.lower()
-        if 'email' in path_lower:
-            metadata['category'] = 'email'
-        elif 'legal' in path_lower or 'court' in path_lower:
-            metadata['category'] = 'legal'
-        elif 'flight' in path_lower or 'travel' in path_lower:
-            metadata['category'] = 'travel'
-        else:
-            metadata['category'] = 'document'
+        # Extract filename
+        filename = parts[-1] if parts else path
+    else:
+        # Just a filename, no path
+        filename = path
+        metadata['folder'] = ''
+
+    # Try to identify category from path or filename
+    path_lower = path.lower()
+    if 'email' in path_lower or 'eml' in path_lower:
+        metadata['category'] = 'email'
+    elif 'legal' in path_lower or 'court' in path_lower or 'deposition' in path_lower:
+        metadata['category'] = 'legal'
+    elif 'flight' in path_lower or 'travel' in path_lower or 'log' in path_lower:
+        metadata['category'] = 'travel'
+    elif 'photo' in path_lower or 'image' in path_lower or '.jpg' in path_lower or '.png' in path_lower:
+        metadata['category'] = 'image'
+    else:
+        metadata['category'] = 'document'
 
     return metadata
 
@@ -132,8 +143,8 @@ def parse_csv_columns(df) -> Dict[str, str]:
 
     # Common patterns for text content
     text_patterns = ['text', 'content', 'ocr', 'body', 'document']
-    # Common patterns for source path
-    path_patterns = ['path', 'source', 'drive', 'folder', 'location']
+    # Common patterns for source path (including 'filename' for Epstein dataset)
+    path_patterns = ['path', 'source', 'drive', 'folder', 'location', 'filename', 'file']
 
     for col in columns:
         col_lower = col.lower()
