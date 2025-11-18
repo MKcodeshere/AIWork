@@ -93,6 +93,16 @@ class FileSearchManager:
                 # If it's a string, get the actual operation object
                 operation = self.client.operations.get(operation)
 
+            # Verify we have a valid operation object
+            if not hasattr(operation, 'done'):
+                # Try one more time to get the operation
+                op_id = str(operation)
+                operation = self.client.operations.get(op_id)
+
+                # If still no 'done' attribute, give up
+                if not hasattr(operation, 'done'):
+                    return False, f"Invalid operation object returned (type: {type(operation)})"
+
             # Poll until complete
             max_wait = 300  # 5 minutes
             elapsed = 0
@@ -119,6 +129,8 @@ class FileSearchManager:
             else:
                 return False, f"Upload timed out after {max_wait}s"
 
+        except AttributeError as e:
+            return False, f"Upload failed - attribute error: {str(e)}. Operation type: {type(operation) if 'operation' in locals() else 'unknown'}"
         except Exception as e:
             return False, f"Upload failed: {str(e)}"
 
