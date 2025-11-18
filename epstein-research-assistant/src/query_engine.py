@@ -1,32 +1,45 @@
 """
 Query Engine for Epstein Research Assistant
-Handles querying Gemini with File Search and formatting responses
+Uses Gemini File Search for retrieval + OpenAI for generation
 """
 from typing import Dict, List, Optional, Any
 from google import genai
 from google.genai import types
+from openai import OpenAI
 
 
 class QueryEngine:
-    """Engine for querying documents and formatting responses"""
+    """Engine for querying documents using hybrid RAG approach"""
 
     def __init__(
         self,
-        api_key: str,
-        model_name: str = "gemini-2.5-flash",
-        source_mapping: Optional[Dict[str, str]] = None
+        gemini_api_key: str,
+        openai_api_key: str,
+        llm_model: str = "gpt-4o-mini",
+        retrieval_model: str = "gemini-2.5-flash",
+        source_mapping: Optional[Dict[str, str]] = None,
+        temperature: float = 0.3,
+        max_tokens: int = 2000
     ):
         """
-        Initialize Query Engine
+        Initialize Query Engine with hybrid approach
 
         Args:
-            api_key: Gemini API key
-            model_name: Model to use (gemini-2.5-flash or gemini-2.5-pro)
+            gemini_api_key: Gemini API key (for File Search retrieval)
+            openai_api_key: OpenAI API key (for LLM generation)
+            llm_model: OpenAI model to use (gpt-4o, gpt-4o-mini, etc.)
+            retrieval_model: Gemini model for File Search
             source_mapping: Mapping of document IDs to source paths
+            temperature: LLM temperature (0.0-1.0)
+            max_tokens: Maximum tokens in response
         """
-        self.client = genai.Client(api_key=api_key)
-        self.model_name = model_name
+        self.gemini_client = genai.Client(api_key=gemini_api_key)
+        self.openai_client = OpenAI(api_key=openai_api_key)
+        self.llm_model = llm_model
+        self.retrieval_model = retrieval_model
         self.source_mapping = source_mapping or {}
+        self.temperature = temperature
+        self.max_tokens = max_tokens
 
     def query(
         self,
@@ -35,12 +48,12 @@ class QueryEngine:
         system_instruction: Optional[str] = None
     ) -> Dict[str, Any]:
         """
-        Query the File Search store
+        Query using Gemini File Search + OpenAI LLM
 
         Args:
             question: User's question
-            file_search_store: File Search Store object
-            system_instruction: Optional system instruction for the model
+            file_search_store: Gemini File Search Store object
+            system_instruction: Optional system instruction
 
         Returns:
             Dictionary with answer, citations, and metadata
@@ -49,29 +62,13 @@ class QueryEngine:
             raise ValueError("File Search store not provided")
 
         try:
-            # Default system instruction
-            if not system_instruction:
-                system_instruction = """You are an expert research assistant analyzing the Epstein Files dataset.
+            # Step 1: Use Gemini File Search to retrieve relevant documents
+            print(f"🔍 Retrieving relevant documents from Gemini File Search...")
 
-Your role:
-- Provide accurate, well-sourced answers based on the documents
-- Always cite your sources with specific references
-- If information is not in the documents, clearly state that
-- Present facts objectively without speculation
-- When multiple documents discuss the same topic, synthesize the information
-- Highlight any contradictions or discrepancies you find
-
-Format your responses clearly with:
-1. Direct answer to the question
-2. Supporting evidence from documents
-3. Source citations"""
-
-            # Create the query with File Search tool
-            response = self.client.models.generate_content(
-                model=self.model_name,
+            retrieval_response = self.gemini_client.models.generate_content(
+                model=self.retrieval_model,
                 contents=question,
                 config=types.GenerateContentConfig(
-                    system_instruction=system_instruction,
                     tools=[
                         types.Tool(
                             file_search=types.FileSearch(
@@ -82,17 +79,62 @@ Format your responses clearly with:
                 )
             )
 
-            # Extract answer
-            answer = response.text if hasattr(response, 'text') else str(response)
+            # Step 2: Extract retrieved context
+            retrieved_context = self._extract_context(retrieval_response)
+            citations = self._extract_citations(retrieval_response)
 
-            # Extract citations if available
-            citations = self._extract_citations(response)
+            print(f"✅ Retrieved {len(citations)} relevant documents")
 
-            # Format response
+            # Step 3: Build prompt for OpenAI
+            if not system_instruction:
+                system_instruction = """You are an expert research assistant analyzing the Epstein Files dataset.
+
+Your role:
+- Provide accurate, well-sourced answers based on the retrieved documents
+- Be objective and factual
+- If information is not in the provided context, clearly state that
+- Present facts without speculation
+- Synthesize information from multiple documents when relevant
+
+Format your responses clearly and professionally."""
+
+            # Create context from retrieved documents
+            context_text = self._format_context(retrieved_context, citations)
+
+            user_prompt = f"""Based on the following retrieved documents, please answer the question.
+
+QUESTION: {question}
+
+RETRIEVED DOCUMENTS:
+{context_text}
+
+Please provide a clear, factual answer based only on the information in these documents. Include specific references to the documents when making claims."""
+
+            # Step 4: Generate answer using OpenAI
+            print(f"🤖 Generating answer with {self.llm_model}...")
+
+            completion = self.openai_client.chat.completions.create(
+                model=self.llm_model,
+                messages=[
+                    {"role": "system", "content": system_instruction},
+                    {"role": "user", "content": user_prompt}
+                ],
+                temperature=self.temperature,
+                max_tokens=self.max_tokens
+            )
+
+            answer = completion.choices[0].message.content
+
+            print(f"✅ Generated answer ({completion.usage.total_tokens} tokens)")
+
+            # Return formatted response
             return {
                 'answer': answer,
                 'citations': citations,
-                'model': self.model_name,
+                'retrieved_context': retrieved_context,
+                'model': self.llm_model,
+                'retrieval_model': self.retrieval_model,
+                'tokens_used': completion.usage.total_tokens,
                 'success': True
             }
 
@@ -100,10 +142,44 @@ Format your responses clearly with:
             return {
                 'answer': f"Error processing query: {str(e)}",
                 'citations': [],
-                'model': self.model_name,
+                'model': self.llm_model,
                 'success': False,
                 'error': str(e)
             }
+
+    def _extract_context(self, response) -> List[str]:
+        """
+        Extract text chunks from Gemini response
+
+        Args:
+            response: Gemini API response
+
+        Returns:
+            List of retrieved text chunks
+        """
+        context = []
+
+        try:
+            # Extract from grounding metadata if available
+            if hasattr(response, 'candidates') and response.candidates:
+                candidate = response.candidates[0]
+
+                if hasattr(candidate, 'grounding_metadata'):
+                    grounding = candidate.grounding_metadata
+
+                    if hasattr(grounding, 'grounding_chunks'):
+                        for chunk in grounding.grounding_chunks:
+                            if hasattr(chunk, 'text'):
+                                context.append(chunk.text)
+
+            # If no grounding metadata, try to extract from response text
+            if not context and hasattr(response, 'text'):
+                context.append(response.text)
+
+        except Exception as e:
+            print(f"Warning: Could not extract context: {str(e)}")
+
+        return context
 
     def _extract_citations(self, response) -> List[Dict]:
         """
@@ -118,19 +194,19 @@ Format your responses clearly with:
         citations = []
 
         try:
-            # Check if response has grounding metadata
             if hasattr(response, 'candidates') and response.candidates:
                 candidate = response.candidates[0]
 
+                # Try grounding metadata
                 if hasattr(candidate, 'grounding_metadata'):
                     grounding = candidate.grounding_metadata
 
-                    # Extract grounding chunks
                     if hasattr(grounding, 'grounding_chunks'):
-                        for chunk in grounding.grounding_chunks:
+                        for i, chunk in enumerate(grounding.grounding_chunks):
                             citation = {
-                                'text': getattr(chunk, 'text', ''),
-                                'source': getattr(chunk, 'source', ''),
+                                'index': i + 1,
+                                'text': getattr(chunk, 'text', '')[:300],  # Preview
+                                'source': getattr(chunk, 'source', 'Unknown'),
                             }
 
                             # Try to get source path from mapping
@@ -143,18 +219,15 @@ Format your responses clearly with:
 
                             citations.append(citation)
 
-            # Also check for citation_metadata
-            if hasattr(response, 'candidates') and response.candidates:
-                candidate = response.candidates[0]
-
+                # Also check citation_metadata
                 if hasattr(candidate, 'citation_metadata'):
                     citation_metadata = candidate.citation_metadata
 
                     if hasattr(citation_metadata, 'citations'):
                         for cite in citation_metadata.citations:
                             citations.append({
-                                'text': getattr(cite, 'text', ''),
-                                'source': getattr(cite, 'source', ''),
+                                'text': getattr(cite, 'text', '')[:300],
+                                'source': getattr(cite, 'source', 'Unknown'),
                                 'start_index': getattr(cite, 'start_index', None),
                                 'end_index': getattr(cite, 'end_index', None)
                             })
@@ -163,6 +236,28 @@ Format your responses clearly with:
             print(f"Warning: Could not extract citations: {str(e)}")
 
         return citations
+
+    def _format_context(self, context_chunks: List[str], citations: List[Dict]) -> str:
+        """
+        Format retrieved context for OpenAI prompt
+
+        Args:
+            context_chunks: List of retrieved text chunks
+            citations: List of citation info
+
+        Returns:
+            Formatted context string
+        """
+        if not context_chunks:
+            return "No relevant documents were retrieved."
+
+        formatted = []
+
+        for i, chunk in enumerate(context_chunks):
+            source = citations[i]['source'] if i < len(citations) else 'Unknown'
+            formatted.append(f"--- Document {i+1} (Source: {source}) ---\n{chunk}\n")
+
+        return "\n".join(formatted)
 
     def format_response_with_citations(self, result: Dict) -> str:
         """
@@ -183,14 +278,19 @@ Format your responses clearly with:
         citations = result.get('citations', [])
         if citations:
             formatted += "---\n### 📚 Sources:\n\n"
-            for i, citation in enumerate(citations, 1):
+            for citation in citations:
                 source_path = citation.get('source_path', citation.get('source', 'Unknown'))
-                formatted += f"{i}. {source_path}\n"
+                formatted += f"{citation.get('index', '?')}. **{source_path}**\n"
 
                 # Add excerpt if available
                 if citation.get('text'):
-                    excerpt = citation['text'][:200] + "..." if len(citation['text']) > 200 else citation['text']
-                    formatted += f"   > {excerpt}\n"
+                    excerpt = citation['text']
+                    formatted += f"   > {excerpt}...\n\n"
+
+        # Add model info
+        formatted += f"\n---\n*Generated by {result['model']} using Gemini File Search*"
+        if result.get('tokens_used'):
+            formatted += f" ({result['tokens_used']} tokens)"
 
         return formatted
 

@@ -44,21 +44,33 @@ def setup_sidebar():
         # Configuration section
         st.subheader("⚙️ Configuration")
 
-        # API Key check
-        if Config.GEMINI_API_KEY and Config.GEMINI_API_KEY != 'your_api_key_here':
-            st.success("✅ API Key configured")
-        else:
-            st.error("❌ API Key not configured")
-            st.info("Please set GEMINI_API_KEY in your .env file")
+        # API Keys check
+        gemini_ok = Config.GEMINI_API_KEY and Config.GEMINI_API_KEY != 'your_gemini_api_key_here'
+        openai_ok = Config.OPENAI_API_KEY and Config.OPENAI_API_KEY != 'your_openai_api_key_here'
 
-        # Model selection
-        model = st.selectbox(
-            "Model",
-            ["gemini-2.5-flash", "gemini-2.5-pro"],
+        if gemini_ok and openai_ok:
+            st.success("✅ Both API Keys configured")
+        else:
+            if not gemini_ok:
+                st.error("❌ Gemini API Key not configured")
+                st.info("Set GEMINI_API_KEY in .env (for RAG)")
+            if not openai_ok:
+                st.error("❌ OpenAI API Key not configured")
+                st.info("Set OPENAI_API_KEY in .env (for LLM)")
+
+        # Architecture info
+        st.markdown("**🏗️ Hybrid Architecture:**")
+        st.markdown(f"- **Retrieval**: Gemini File Search")
+        st.markdown(f"- **Generation**: {Config.LLM_MODEL}")
+
+        # Model selection for LLM
+        llm_model = st.selectbox(
+            "LLM Model (OpenAI)",
+            ["gpt-4o-mini", "gpt-4o", "gpt-4-turbo", "gpt-3.5-turbo"],
             index=0,
-            help="Flash: Faster, Pro: More accurate"
+            help="Mini: Fast & cheap, 4o: Best quality"
         )
-        st.session_state.selected_model = model
+        st.session_state.selected_model = llm_model
 
         st.markdown("---")
 
@@ -238,9 +250,13 @@ def query_interface():
                     metadata_mapping[doc_id] = source_path
 
         st.session_state.query_engine = QueryEngine(
-            api_key=Config.get_api_key(),
-            model_name=st.session_state.selected_model,
-            source_mapping=metadata_mapping
+            gemini_api_key=Config.get_gemini_api_key(),
+            openai_api_key=Config.get_openai_api_key(),
+            llm_model=Config.LLM_MODEL,
+            retrieval_model=Config.RETRIEVAL_MODEL,
+            source_mapping=metadata_mapping,
+            temperature=Config.LLM_TEMPERATURE,
+            max_tokens=Config.LLM_MAX_TOKENS
         )
 
     # Example questions
